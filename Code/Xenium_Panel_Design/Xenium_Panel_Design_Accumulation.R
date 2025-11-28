@@ -4,8 +4,7 @@ library(tidyr)
 library(ggplot2)
 library(RColorBrewer)
 
-setwd("/Users/tbleckwehl/Documents/Kidney_Biopsy_Project/Xenium/")
-
+#input files
 #SpaPros - probeset.csv and manually added markers
 #MOFA - Factor2_top50loadingsperview_transcriptome.csv
 #LIANA+ - Factor2_top50loadingsperview_LIANA.csv and 
