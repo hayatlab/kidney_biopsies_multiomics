@@ -1,0 +1,186 @@
+---
+title: "06_Signature_Specificity"
+output: html_document
+date: "2025-10-01"
+---
+
+### 1. Setup and Data Loading
+
+```{r setup, message=FALSE, warning=FALSE}
+# Using pacman to install if missing and load libraries in one step
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  dplyr,          # Data manipulation
+  stringr,        # String operations
+  ggplot2,        # Plotting
+  forcats,        # Factor manipulation
+  lubridate,      # Date-time manipulation
+  survival,       # Survival analysis
+  broom,          # Tidy model output
+  tidytable,
+  ggrepel,
+  tidytable,
+  purrr
+)
+
+# Download and load the dataset
+# system('dx download "analysis_df_pheno.rds"')
+#analysis_df_pheno <- readRDS("analysis_df_pheno.rds")
+```
+
+
+```{r}
+analysis_df_pheno <- analysis_df_pheno %>% mutate(baseline_first_ckd_60 = ifelse(egfr < 60, 1,0))
+```
+
+# 1. Identify all baseline phenotype columns to be tested
+
+```{r}
+baseline_phenos <- colnames(analysis_df_pheno) %>%
+  grep("^baseline_first", ., value = TRUE)
+
+phewas_results <- map_dfr(baseline_phenos, function(pheno_name) {
+  
+  if (sum(analysis_df_pheno[[pheno_name]], na.rm = TRUE) < 20) {
+    return(NULL)
+  }
+  
+  formula <- as.formula(paste0("`", pheno_name, "` ~ Factor2_score_z + Age.at.recruitment + Sex + Body.mass.index..BMI....Instance.0.participant...p21001_i0. + smoking_status_current_previous + on_ras_inhibitor"))
+  
+  model <- tryCatch({
+    glm(formula, data = analysis_df_pheno, family = "binomial")
+  }, error = function(e) {
+    message("Could not fit model for: ", pheno_name)
+    return(NULL)
+  })
+  
+  if (is.null(model)) return(NULL)
+  
+  tidy(model) %>%
+    filter(term == "Factor2_score_z") %>%
+    mutate(phenotype = pheno_name) # Add phenotype name for tracking
+})
+
+knitr::kable(head(phewas_results, n=50), caption = "PheWAS Results Summary Table")
+```
+
+```{r}
+# Process the results for plotting
+phewas_plot_data <- phewas_results %>%
+  mutate(
+    OR = exp(estimate),
+    log2_OR = log2(OR),
+    neg_log10_p = -log10(p.value),
+    clean_pheno = case_when(
+      phenotype == "baseline_first_ckd_60" ~ "CKD (eGFR < 60)",
+      phenotype == "baseline_first_ckd" ~ "CKD (ICD-based)",
+      phenotype == "baseline_first_glomerular" ~ "Glomerular Dz.",
+      phenotype == "baseline_first_tubulointerstitial" ~ "Tubulointerstitial Dz.",
+      phenotype == "baseline_first_htn" ~ "Hypertension",
+      phenotype == "baseline_first_dm_all" ~ "Diabetes",
+      phenotype == "baseline_first_hfcm" ~ "Heart Failure",
+      phenotype == "baseline_first_mi" ~ "Myocardial Infarction",
+      phenotype == "baseline_first_ischd" ~ "Ischemic Heart Dz.",
+      phenotype == "baseline_first_atherosclerosis" ~ "Atherosclerosis",
+      phenotype == "baseline_first_pvd" ~ "Peripheral Vasc. Dz.",
+      phenotype == "baseline_first_afib" ~ "Atrial Fibrillation",
+      phenotype == "baseline_first_stroke" ~ "Stroke",
+      phenotype == "baseline_first_hypothyroid" ~ "Hypothyroidism",
+      phenotype == "baseline_first_hyperthyroid" ~ "Hyperthyroidism",
+      phenotype == "baseline_first_obesity" ~ "Obesity",
+      phenotype == "baseline_first_lipidaemia" ~ "Dyslipidemia",
+      phenotype == "baseline_first_copd" ~ "COPD",
+      phenotype == "baseline_first_asthma" ~ "Asthma",
+      phenotype == "baseline_first_ild" ~ "Interstitial Lung Dz.",
+      phenotype == "baseline_first_ibd" ~ "IBD",
+      phenotype == "baseline_first_liver_disease" ~ "Liver Disease",
+      phenotype == "baseline_first_ra" ~ "Rheumatoid Arthritis",
+      phenotype == "baseline_first_gout" ~ "Gout",
+      phenotype == "baseline_first_oa_knee" ~ "Osteoarthritis (Knee)",
+      phenotype == "baseline_first_lupus" ~ "Lupus",
+      phenotype == "baseline_first_osteoporosis" ~ "Osteoporosis",
+      phenotype == "baseline_first_bph" ~ "BPH",
+      phenotype == "baseline_first_parkinsons" ~ "Parkinson's Dz.",
+      phenotype == "baseline_first_alzheimers" ~ "Alzheimer's Dz.",
+      phenotype == "baseline_first_other_neurodegenerative" ~ "Other Neurodeg. Dz.",
+      TRUE ~ gsub("baseline_first_", "", phenotype) # Fallback for any missed names
+    ),
+    category = case_when(
+      grepl("CKD|AKI|Glomerular|Tubulointerstitial", clean_pheno) ~ "Renal",
+      grepl("Hypertension|Heart Failure|Myocardial Infarction|Ischemic|Atherosclerosis|Peripheral|Atrial|Stroke", clean_pheno) ~ "Cardiometabolic",
+      grepl("Diabetes|Hypothyroidism|Hyperthyroidism|Obesity|Dyslipidemia|Gout", clean_pheno) ~ "Endocrine/Metabolic",
+      grepl("COPD|Asthma|Interstitial", clean_pheno) ~ "Respiratory",
+      grepl("Liver|IBD", clean_pheno) ~ "Digestive",
+      grepl("Rheumatoid|Osteoarthritis|Lupus|Osteoporosis", clean_pheno) ~ "Musculoskeletal",
+      TRUE ~ "Other"
+    ),
+    category = factor(category, levels = c("Cardiometabolic", "Endocrine/Metabolic", "Respiratory", "Digestive", "Musculoskeletal", "Other", "Renal"))
+  )
+
+# Define significance threshold (Bonferroni correction)
+bonferroni_threshold <- 0.05 / nrow(phewas_plot_data)
+
+# Create the Volcano Plot
+phewas_volcano_plot <- ggplot(phewas_plot_data, aes(x = log2_OR, y = neg_log10_p)) +
+  geom_point(aes(color = category, size = 2), alpha = 0.8) +
+  geom_text_repel(
+    data = subset(phewas_plot_data, p.value < bonferroni_threshold | category == 'Renal'),
+    aes(label = clean_pheno),
+    size = 3.5,
+    max.overlaps = 15,
+    box.padding = 0.5,
+    point.padding = 0.5,
+    segment.color = 'grey50',
+    fontface = 'bold'
+  ) +
+
+  geom_hline(yintercept = -log10(bonferroni_threshold), linetype = "dashed", color = "red") +
+
+  geom_vline(xintercept = 0, linetype = "dotted", color = "black") +
+
+  scale_color_brewer(palette = "Set1") +
+  scale_size_continuous(range = c(2, 4)) +
+  labs(
+    title = "Factor 2 Score Association with Baseline Phenotypes",
+    subtitle = "Fully adjusted model (Age, Sex, BMI, Smoking, RAAS inhibitors use)",
+    x = "Log2(Odds Ratio) per SD increase in Factor 2 Score",
+    y = "-log10(P-value)",
+    color = "Phenotype Category"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold"),
+    plot.title = element_text(face = "bold", size = 18),
+    panel.grid.minor = element_blank()
+  ) +
+  guides(size = "none") # Hide the size legend
+
+# Print the plot
+print(phewas_volcano_plot)
+```
+
+```{r}
+pdf("phewas_volcano_plot.pdf", width = 12, height = 8)
+print(phewas_volcano_plot)
+dev.off()
+```
+
+```{r}
+system('dx upload "06_Signature_Specificity.Rmd" --path "/UKB_CKD/reports/"')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,518 @@
+---
+title: "Factor 2 Proteomic Signature Projection in the UK Biobank"
+author: "Sergio Alejandro Gómez Ochoa"
+date: "2025-09-26"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+# Load essential libraries using pacman
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  dplyr, 
+  stringr, 
+  lubridate, 
+  kidney.epi, 
+  skimr, 
+  tidyverse, 
+  here, 
+  glue,
+  datatable
+)
+
+cfg <- list(seed = 20251001, horizon_years = 5)
+set.seed(cfg$seed)
+path_stage <- function(k) here("derived", glue("analysis_df_pheno_stage{sprintf('%02d', k)}.rds"))
+
+system('dx download "/UKB_CKD/R/utils_scripts.R"')
+source("utils_scripts.R")
+```
+
+### ### Introduction
+
+In this code I process proteomic and clinical data from the UK Biobank to project a proteomic signature associated with "Factor2." The analysis involves deriving a proteomic score, merging it with clinical data, calculating kidney function metrics, and phenotyping participants for baseline and incident comorbidities.
+
+---
+
+### ## 1. Data Loading
+
+First, I load the necessary datasets. This includes MOFA gene loadings for Factor 2, imputed proteomics data, and two sets of clinical/phenotypic data.
+
+```{r load-data}
+# Make required files accessible in the RAP environment
+# system('dx download "/UKB_CKD/data/Aachen_loadings.csv"') # Loadings per factor per cell type
+# system('dx download "/UKB_CKD/data/imputed_data_vae.csv"') # A matrix of imputed proteomics data
+# system('dx download "/UKB_CKD/data/data_ERC.csv"') # Basic phenotypic data
+# system('dx download "/UKB_CKD/data/phenotypic_data_kidney.csv"') # Complete phenotypic data
+
+# Load data into R dataframes
+loadings   <- read.csv("Aachen_loadings.csv", sep = ",")
+proteomics <- read.csv("imputed_data_vae.csv", sep = ",")
+data_erc   <- read.csv("data_ERC.csv", sep = ",")
+pheno_data <- read.csv("phenotypic_data_kidney.csv", sep = ",")
+```
+
+---
+
+### ## 2. Factor 2 Proteomic Score Derivation
+
+I derive the Factor 2 proteomic score based on Multicellular Factor Analysis (MOFA) loadings from tubular-specific cell types. I then calculate weighted score for each participant based on their proteomic profile.
+
+```{r derive-signature}
+tubular_cells <- c("PT", "TAL", "aPT_aTAL_aDCT", "dPT_dTAL_dDCT")
+
+parse_gene <- function(x) {
+  g <- str_split_fixed(x, pattern = "[\\^\\|;]", n = 2)[,1]
+  g <- str_trim(g)
+  g <- ifelse(g == "", NA_character_, g)
+  tolower(g)
+}
+
+tubular_signature <- loadings %>%
+  filter(Factor == "Factor2", view %in% tubular_cells) %>%
+  mutate(Loading = as.numeric(Loading),
+         gene_symbol = parse_gene(variable)) %>%
+  filter(!is.na(gene_symbol), is.finite(Loading)) %>%
+  group_by(gene_symbol) %>%
+  summarise(mean_loading = mean(Loading, na.rm = TRUE), .groups = "drop") %>%
+  filter(!is.na(mean_loading))
+```
+
+```{r}
+protein_loading_plot <- ggplot(tubular_signature,
+                               aes(x = reorder(gene_symbol, mean_loading),
+                                   y = mean_loading,
+                                   fill = mean_loading > 0)) +
+  geom_bar(stat = "identity", show.legend = FALSE, width = 1) +
+  scale_fill_manual(values = c("TRUE" = "#cb181d", "FALSE" = "#2171b5")) +
+  labs(
+    title = "Tubular Factor 2 Protein Loadings",
+    subtitle = "Proteins ordered by mean loading value (collapsed across tubular views)",
+    x = "Proteins",
+    y = "Mean Loading"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    plot.title = element_text(face = "bold")
+  ) +
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.5)
+
+print(protein_loading_plot)
+```
+
+```{r}
+tubular_signature %>% arrange(desc(mean_loading)) %>% head(10)
+```
+
+```{r}
+tubular_signature %>% arrange(mean_loading) %>% head(10)
+```
+
+```{r}
+ggplot(tubular_signature, aes(x = mean_loading)) +
+  geom_histogram(bins = 100, fill = "royalblue", alpha = 0.7) +
+  labs(title = "Distribution of Protein Loadings", x = "Mean Loading", y = "Frequency") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(tubular_signature, aes(x = mean_loading)) +
+  geom_density(fill = "#4292c6", color = "#08519c", alpha = 0.7) +
+  labs(title = "Density Plot of Protein Loadings", x = "Mean Loading", y = "Density") +
+  theme_minimal(base_size = 14) +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+```{r}
+sig_scored <- calculate_weighted_signature_score(
+  proteomics_data = proteomics,
+  signature_df    = tubular_signature,
+  gene_col        = "gene_symbol",
+  score_col       = "mean_loading",
+  factor_name     = "Factor2",
+  id_col          = "Sample.ID",
+  anchors         = NULL,
+  winsor_pct      = 0.99,
+  do_l2           = TRUE,
+  log2_transform  = FALSE,   
+  zscale_columns  = TRUE,    
+  median_impute   = FALSE,
+  verbose         = TRUE
+)
+
+message(sprintf("Matched %d proteins; flipped=%s; anchor_stat=%.3f",
+                attr(sig_scored, "n_common"),
+                attr(sig_scored, "flipped"),
+                ifelse(is.na(attr(sig_scored, "anchor_stat")), NA_real_, attr(sig_scored, "anchor_stat"))))
+
+sig_scored$Participant.ID <- as.numeric(sig_scored$Participant.ID)
+```
+
+
+---
+
+### ## 3. Data Merging and eGFR Calculation
+
+The derived Factor 2 scores are merged with the clinical data. I then calculate the estimated Glomerular Filtration Rate (eGFR) using both the 2021 CKD-EPI creatinine equation and the creatinine-cystatin C equation.
+
+```{r merge-and-egfr}
+# Merge scores with clinical data
+analysis_df <- sig_scored %>%
+  left_join(data_erc, by = "Participant.ID")
+
+# Calculate baseline eGFR using the creatinine equation
+analysis_df <- analysis_df %>%
+  mutate(
+    Creatinine_umolL = as.numeric(Creatinine...Instance.0.participant...p30700_i0.),
+    egfr = egfr.ckdepi.cr.2021(
+      creatinine = Creatinine_umolL,
+      age = Age.at.recruitment,
+      sex = Sex,
+      creatinine_units = "micromol/l"
+    )
+  ) %>%
+  filter(!is.na(egfr) & !is.na(Factor2_score))
+
+# Calculate eGFR using the creatinine-cystatin C equation
+analysis_df <- analysis_df %>%
+  mutate(
+    Cystatin_mgl = as.numeric(Cystatin.C...Instance.0),
+    egfr_cys = egfr.ckdepi.cr_cys.2021(
+      creatinine = Creatinine_umolL,
+      cystatin = Cystatin_mgl,
+      age = Age.at.recruitment,
+      sex = Sex,
+      creatinine_units = "micromol/l",
+      cystatin_units = "mg/L"
+    )
+  )
+```
+
+---
+
+### ## 4. Phenotyping and Covariate Creation
+
+I process the phenotypic data to derive key covariates for modeling, including medication use (RAS inhibitors) and the incidence/prevalence of major comorbidities like hypertension, heart failure, diabetes, and chronic kidney disease (CKD).
+
+#### ### 4.1 RAS Inhibitor Use
+
+I identify participants taking ACE inhibitors, ARBs, or ARNIs to create a composite variable for any RAS inhibitor use.
+
+```{r medication-phenotyping}
+# Define lists of RAS inhibitors
+ace_inhibitors <- c("benazepril", "captopril", "enalapril", "lisinopril", "ramipril") # Abridged
+arbs <- c("candesartan", "irbesartan", "losartan", "olmesartan", "valsartan") # Abridged
+arnis <- c("sacubitril", "entresto")
+
+# Identify medication columns and create flags
+med_cols <- names(pheno_data)[str_detect(names(pheno_data), "^Treatment\\.medication\\.code")]
+
+pheno_data <- pheno_data %>% 
+  filter(Participant.ID %in% analysis_df$Participant.ID) %>%
+  mutate(
+    on_acei = find_medication(., med_cols, ace_inhibitors),
+    on_arb = find_medication(., med_cols, arbs),
+    on_arni = find_medication(., med_cols, arnis),
+    on_ras_inhibitor = as.integer(on_acei == 1 | on_arb == 1 | on_arni == 1)
+  )
+
+# Display summary of medication use
+cat("Total participants on any RAS inhibitor:", sum(pheno_data$on_ras_inhibitor), "\n")
+```
+
+#### ### 4.2 Comorbidity Phenotyping
+
+I process ICD diagnosis dates to determine baseline and incident cases of hypertension, heart failure/cardiomyopathy, diabetes, and CKD, among others.
+
+```{r}
+# Process ICD dates to create baseline and incident flags for all phenotypes
+pheno_data <- pheno_data %>%
+  mutate(
+    baseline_date = to_Date(Date.of.attending.assessment.centre...Instance.0),
+    death_date = to_Date(Date.of.death...Instance.0),
+    
+    # CKD
+    first_ckd = pmin_date(
+      to_Date(Date.N18.first.reported..chronic.renal.failure.),
+      to_Date(Date.N03.first.reported..chronic.nephritic.syndrome.),
+      to_Date(Date.N04.first.reported..nephrotic.syndrome.),
+      to_Date(Date.N19.first.reported..unspecified.renal.failure.),
+      to_Date(Date.I12.first.reported..hypertensive.renal.disease.),
+      to_Date(Date.I13.first.reported..hypertensive.heart.and.renal.disease.)
+    ),
+
+    ckd_incident = as.integer(!is.na(first_ckd) & first_ckd > baseline_date),
+    ckd_incident_date = as.Date(ifelse(ckd_incident == 1, first_ckd, NA), origin = "1970-01-01"),
+    
+    # --- Cardiometabolic & Vascular Phenotypes ---
+    first_htn = pmin_date(
+        to_Date(Date.I10.first.reported..essential..primary..hypertension.), 
+        to_Date(Date.I11.first.reported..hypertensive.heart.disease.)
+    ),
+    first_dm_all = pmin_date(
+        to_Date(Date.E10.first.reported..insulin.dependent.diabetes.mellitus.),
+        to_Date(Date.E11.first.reported..non.insulin.dependent.diabetes.mellitus.), 
+        to_Date(Date.E14.first.reported..unspecified.diabetes.mellitus.)
+    ),
+    first_hfcm = pmin_date( # Heart Failure & Cardiomyopathy
+        to_Date(Date.I50.first.reported..heart.failure.),
+        to_Date(Date.I42.first.reported..cardiomyopathy.)
+    ),
+    first_mi = to_Date(Date.I21.first.reported..acute.myocardial.infarction.),
+    first_ischd = pmin_date( # Ischemic Heart Disease
+        to_Date(Date.I20.first.reported..angina.pectoris.),
+        to_Date(Date.I25.first.reported..chronic.ischaemic.heart.disease.)
+    ),
+    first_atherosclerosis = to_Date(Date.I70.first.reported..atherosclerosis.),
+    first_pvd = to_Date(Date.I73.first.reported..other.peripheral.vascular.diseases.),
+    first_afib = to_Date(Date.I48.first.reported..atrial.fibrillation.and.flutter.),
+    first_stroke = to_Date(Date.I63.first.reported..cerebral.infarction.),
+
+    # --- Other Endocrine / Metabolic Phenotypes ---
+    first_hypothyroid = to_Date(Date.E03.first.reported..other.hypothyroidism.),
+    first_hyperthyroid = to_Date(`Date.E05.first.reported..thyrotoxicosis..hyperthyroidism..`),
+    first_obesity = to_Date(Date.E66.first.reported..obesity.),
+    first_lipidaemia = to_Date(Date.E78.first.reported..disorders.of.lipoprotein.metabolism.and.other.lipidaemias.),
+    
+    # --- Respiratory Phenotypes ---
+    first_copd = pmin_date(
+        to_Date(Date.J43.first.reported..emphysema.),
+        to_Date(Date.J44.first.reported..other.chronic.obstructive.pulmonary.disease.)
+    ),
+    first_asthma = to_Date(Date.J45.first.reported..asthma.),
+    first_ild = to_Date(Date.J84.first.reported..other.interstitial.pulmonary.diseases.), # Interstitial Lung Disease
+
+    # --- Digestive Phenotypes ---
+    first_ibd = pmin_date( # Inflammatory Bowel Disease
+        to_Date(`Date.K50.first.reported..crohn.s.disease..regional.enteritis..`),
+        to_Date(Date.K51.first.reported..ulcerative.colitis.)
+    ),
+    first_liver_disease = pmin_date(
+        to_Date(Date.K70.first.reported..alcoholic.liver.disease.),
+        to_Date(Date.K74.first.reported..fibrosis.and.cirrhosis.of.liver.),
+        to_Date(Date.K76.first.reported..other.diseases.of.liver.)
+    ),
+    
+    # --- Neurodegenerative Phenotypes ---
+    first_alzheimers = pmin_date(
+        to_Date(`Date.G30.first.reported..alzheimer.s.disease.`)
+    ),
+    first_parkinsons = pmin_date(
+        to_Date(Date.G20.first.reported..parkinson.s.disease.)
+    ),
+    first_other_neurodegenerative = pmin_date(
+        to_Date(Date.G31.first.reported..other.degenerative.diseases.of.nervous.system..not.elsewhere.classified.)
+    ),
+
+    # --- Musculoskeletal & Connective Tissue Phenotypes ---
+    first_ra = pmin_date( # Rheumatoid Arthritis
+        to_Date(Date.M05.first.reported..seropositive.rheumatoid.arthritis.),
+        to_Date(Date.M06.first.reported..other.rheumatoid.arthritis.)
+    ),
+    first_gout = to_Date(Date.M10.first.reported..gout.),
+    first_oa_knee = to_Date(`Date.M17.first.reported..gonarthrosis..arthrosis.of.knee..`), # Osteoarthritis
+    first_lupus = to_Date(Date.M32.first.reported..systemic.lupus.erythematosus.),
+    first_osteoporosis = to_Date(Date.M81.first.reported..osteoporosis.without.pathological.fracture.),
+
+    # --- Genitourinary (Non-Renal) ---
+    first_bph = to_Date(Date.N40.first.reported..hyperplasia.of.prostate.) # Benign Prostatic Hyperplasia
+  ) %>%
+  mutate(
+    # --- Create Incident Flags and Dates for ALL conditions ---
+    across(
+      .cols = starts_with("first_"),
+      .names = "incident_{.col}",
+      .fns = ~ as.integer(!is.na(.x) & .x > baseline_date)
+    ),
+    across(
+      .cols = starts_with("first_"),
+      .names = "date_{.col}",
+      .fns = ~ as.Date(if_else(!is.na(.x) & .x > baseline_date, .x, NA_Date_), origin = "1970-01-01")
+    ),
+
+    # --- Create Baseline (Prevalent) Flags for ALL conditions ---
+    across(
+      .cols = starts_with("first_"),
+      .names = "baseline_{.col}",
+      .fns = ~ as.integer(!is.na(.x) & .x <= baseline_date)
+    )
+  )
+
+# Display the names of a subset of the newly created columns to verify
+print(tail(colnames(pheno_data), 60))
+```
+
+
+```{r}
+# 1. DEFINE CANCER GROUPS AND ICD-10 CODES
+cancer_code_map <- list(
+  lung_cancer = "C34",
+  breast_cancer = "C50",
+  liver_cancer = "C22",
+  renal_cancer = "C64",
+  uterine_cancer = c("C54", "C55"),
+  prostate_cancer = "C61",
+  soft_tissue_cancer = "C49",
+  brain_cancer = "C71",
+  bladder_cancer = "C67",
+  skin_cancer = c("C43", "C44"),
+  haematological_cancer = c(paste0("C", 81:96), "C90")
+)
+
+# 2. PREPARE DATA
+pheno_data <- pheno_data %>%
+  mutate(baseline_date = as.Date(Date.of.attending.assessment.centre...Instance.0))
+
+# Identify all cancer ICD and corresponding date columns.
+icd_cols <- names(pheno_data)[str_detect(names(pheno_data), "^Type\\.of\\.cancer\\.\\.ICD10")]
+date_cols <- names(pheno_data)[str_detect(names(pheno_data), "^Date\\.of\\.cancer\\.diagnosis")]
+
+pheno_data[date_cols] <- suppressWarnings(lapply(pheno_data[date_cols], as.Date))
+
+
+# 3. GENERATE PREVALENT CANCER FLAGS
+for (cancer_name in names(cancer_code_map)) {
+  
+  target_codes <- cancer_code_map[[cancer_name]]
+  
+  prevalent_flag <- Reduce(`|`, lapply(seq_along(icd_cols), function(i) {
+
+    code_match <- Reduce(`|`, lapply(target_codes, function(code) str_starts(pheno_data[[icd_cols[i]]], code)))
+
+    date_match <- !is.na(pheno_data[[date_cols[i]]]) & pheno_data[[date_cols[i]]] <= pheno_data$baseline_date
+    
+    code_match & date_match & !is.na(code_match)
+  }))
+
+  pheno_data[[cancer_name]] <- as.integer(prevalent_flag)
+}
+
+new_cancer_cols <- names(cancer_code_map)
+print("Cancer columns:")
+print(new_cancer_cols)
+```
+
+
+---
+
+### ## 5. Final Dataset Assembly and Export
+
+Finally, I select the relevant variables, join the datasets, create a final smoking status variable, and save the resulting analytical dataframe to an `.rds` file for use in subsequent modeling scripts.
+
+```{r final-assembly-and-save}
+# Select relevant phenotypic variables
+relevant_pheno_vars <- pheno_data %>%
+  select(
+    Participant.ID,
+    baseline_date,
+    death_date,
+    `Date.lost.to.follow.up`,
+    `Townsend.deprivation.index.at.recruitment`,
+    `Ethnic.background...Instance.0`,
+    `Body.mass.index..BMI....Instance.0.participant...p21001_i0.`,
+    `Smoking.status...Instance.0`,
+    `Pack.years.of.smoking...Instance.0`,
+    on_ras_inhibitor,
+    `Glycated.haemoglobin..HbA1c....Instance.0`,                                                         
+    `LDL.direct...Instance.0`,                                                                           
+    `HDL.cholesterol...Instance.0`,                                                                      
+    `Triglycerides...Instance.0`,                                                                        
+    `C.reactive.protein...Instance.0`,                                                                   
+    `Albumin...Instance.0.participant...p23479_i0.`,                                                     
+    `Albumin...Instance.0.participant...p30600_i0.`,                                                     
+    `Alanine.aminotransferase...Instance.0`,                                                             
+    `Alkaline.phosphatase...Instance.0`,                                                                 
+    `Aspartate.aminotransferase...Instance.0`,                                                           
+    `Calcium...Instance.0.participant...p30680_i0.`,                                                     
+    `Calcium...Instance.0.participant...p100024_i0.`,                                                    
+    `Gamma.glutamyltransferase...Instance.0`,                                                            
+    `Direct.bilirubin...Instance.0`,                                                                     
+    `Total.bilirubin...Instance.0`,                                                                      
+    `Haemoglobin.concentration...Instance.0`,                                                            
+    `Platelet.count...Instance.0`,                                                                       
+    `White.blood.cell..leukocyte..count...Instance.0`,                                                   
+    `Red.blood.cell..erythrocyte..count...Instance.0`,
+    starts_with("baseline_"),
+    starts_with("incident_"),
+    starts_with("date_first_"),
+    ends_with("cancer"),
+    ckd_incident_date
+  )
+
+# Verify the selected columns
+head(relevant_pheno_vars)
+
+# Join with the main analysis dataframe
+analysis_df_pheno <- analysis_df %>% left_join(relevant_pheno_vars, by = "Participant.ID")
+
+# Create a simplified smoking status variable
+analysis_df_pheno <- analysis_df_pheno %>%  
+  mutate(
+    smoking_status_current_previous = case_when(
+      `Smoking.status...Instance.0` %in% c("Current", "Previous") ~ 1,
+      `Pack.years.of.smoking...Instance.0` > 0 ~ 1,
+      `Smoking.status...Instance.0` == "Never" ~ 0,
+      TRUE ~ NA_real_
+    )
+  )
+
+# Check the data for completeness
+skimr::skim(analysis_df_pheno)
+```
+
+```{r}
+ggplot(analysis_df_pheno, aes(x = reorder(Participant.ID, Factor2_score), y = Factor2_score, fill = Factor2_score > 0)) +
+    geom_bar(stat = "identity", show.legend = FALSE, width = 1) +
+    scale_fill_manual(values = c("TRUE" = "#cb181d", "FALSE" = "#2171b5")) +
+    labs(
+        title = "Factor 2 Enrichmeht Scores",
+        x = "Participants (ordered by Factor2 score)",
+        y = "Enrichment Score"
+    ) +
+    theme_classic(base_size = 14) +
+    theme(
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        plot.title = element_text(face = "bold")
+    ) +
+    geom_hline(yintercept = 0, color = "black", linewidth = 0.5)
+```
+
+```{r}
+ggplot(analysis_df_pheno, aes(x = Factor2_score)) +
+    geom_density(fill = "#4292c6", color = "#08519c", alpha = 0.7) +
+    labs(
+        title = "Distribution of Factor 2 Enrichment Scores",
+        x = "Score",
+        y = "Density"
+    ) +
+    theme_classic(base_size = 14) +
+    theme(
+        plot.title = element_text(face = "bold")
+    )
+```
+
+```{r final-assembly-and-save}
+# Save the final dataset and upload
+saveRDS(analysis_df_pheno, "analysis_df_pheno_stage01.rds")
+# system('dx upload "analysis_df_pheno_stage01.rds" --path "/UKB_CKD/derived/"')
+# system('dx upload "01_Baseline_Cohort_Generation.Rmd" --path "/UKB_CKD/reports/"')
+```
+
+```{r}
+sessioninfo::session_info()
+```

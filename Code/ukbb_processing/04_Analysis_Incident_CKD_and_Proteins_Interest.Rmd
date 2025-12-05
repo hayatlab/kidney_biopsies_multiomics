@@ -1,0 +1,188 @@
+---
+title: "Longitudinal Analysis of Factor 2 Score and Incident CKD"
+author: "Sergio Alejandro Gómez Ochoa"
+date: "2025-10-09"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    code_folding: hide
+---
+
+## Introduction
+
+This represents the longitudinal analysis investigating the association between the baseline **Factor 2 proteomic score** and the risk of developing **incident Chronic Kidney Disease (CKD)**. The analysis is performed on participants who did not have CKD at their baseline assessment. I employ two survival analysis frameworks:
+
+1.  **Standard Cox Proportional Hazards Models** to provide initial estimates and a Kaplan-Meier visualization.
+2.  **Competing Risks Regression (Fine-Gray Models)** to properly account for the competing risk of death, which can prevent the observation of incident CKD.
+
+***
+
+## 1. Standard Survival Analysis (Cox Models)
+
+I begin with a standard survival analysis approach to get a preliminary understanding of the association.
+
+### 1.1. Data Preparation for Cox Models
+
+I filter the cohort to include only participants without CKD at baseline (`eGFR >= 60`) and calculate the time-to-event or censoring. For this initial step, we treat death as a censoring event.
+
+
+### 1.2. Cox Proportional Hazards Models
+
+I fit minimally and fully-adjusted Cox models using both the continuous z-score and quintiles of the Factor 2 score.
+
+### 1.3. Visualization: Kaplan-Meier Plot
+
+Then I plot the probability of remaining free of CKD over time using a Kaplan Meier plot, stratified by the Factor 2 score quintile. It provides a visual representation of the unadjusted association.
+
+***
+
+### ## 2. Competing Risks Analysis (Fine-Gray Models)
+
+Since death is a competing event for incident CKD (a person who dies cannot develop CKD), a competing risks framework provides a more accurate estimate of the cumulative incidence.
+
+#### ### 2.1. Data Preparation for Competing Risks
+
+I create a more detailed dataset that properly defines the event status: 0 for censored, 1 for incident CKD, and 2 for the competing event (death).
+
+
+### 2.2. Visualization: Cumulative Incidence Function (CIF)
+
+This plot shows the cumulative probability of incident CKD over time, properly accounting for the fact that some individuals may experience the competing event of death first. 
+
+```{r cif-plot, echo=FALSE}
+# Fit the cumulative incidence model
+ci_fit <- tidycmprsk::cuminc(
+  Surv(ftime_years, fstatus_factor) ~ Factor2_quintile_f,
+  data = df_competing_risk
+)
+
+quintile_colors <- c("#440154", "#31688e", "#35b779", "#fde725", "#d62728")
+
+# Plot cumulative incidence for the primary outcome (Incident CKD)
+plot_ckd <- ci_fit %>%
+  ggcuminc(outcome = "Incident CKD") +
+  add_confidence_interval(alpha = 0.2) +
+  add_risktable(
+    risktable_height = 0.25,
+    size = 3.5
+  ) +
+  add_pvalue(location = "caption", caption = "Gray's test p-value: {p.value}") +
+  scale_color_manual(
+    name = "Factor2 Quintile",
+    values = quintile_colors,
+    labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4", "Q5 (Highest)")
+  ) +
+  scale_fill_manual(
+    name = "Factor2 Quintile",
+    values = quintile_colors,
+    labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4", "Q5 (Highest)")
+  ) +
+  scale_y_continuous(
+    limits = c(0, 0.15),
+    labels = scales::percent_format(accuracy = 1)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 15),
+    breaks = seq(0, 15, by = 3)
+  ) +
+  labs(
+    title = "Cumulative Incidence of CKD by Baseline Factor 2 Score Quintile",
+    subtitle = paste0("UK Biobank participants without baseline CKD (N = ", 
+                      format(nrow(df_competing_risk), big.mark = ","), ")"),
+    x = "Time Since Baseline Assessment (Years)",
+    y = "Cumulative Incidence of CKD"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title.x = element_text(size = 14, face = "bold"),
+    axis.title.y = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    legend.position = "right",
+    legend.title = element_text(face = "bold")
+  )
+
+print(plot_ckd)
+```
+
+```{r}
+pdf('plot_competing_risks.pdf',  width = 12,
+    height = 8)
+print(plot_ckd)
+dev.off()
+```
+
+### 2.3. Fine-Gray Competing Risks Regression
+
+I fit Fine-Gray models to estimate the subdistribution hazard ratio (sHR). The sHR represents the instantaneous risk of experiencing the event of interest (incident CKD) in subjects who are currently event-free, accounting for the competing risk.
+
+
+### 2.4. I recall the proteomics data, join it with my CKD outcome variable of interest and confounders and then iterate over each protein, run the Cox model, and collect results (z statistic for each protein of interest)
+
+
+### 2.5 Then I bring back the tubular-specific Factor 2 signature and create the following quadrant plot
+
+```{r}
+# Define Quadrant Thresholds
+loading_threshold <- median(comparison_df$mean_loading, na.rm = TRUE)
+z_stat_threshold <- median(comparison_df$z_stat, na.rm = TRUE)
+
+# Create plot
+quadrant_df <- comparison_df %>%
+  mutate(
+    quadrant = case_when(
+      mean_loading >= loading_threshold & z_stat >= z_stat_threshold   ~ "High Loading, High Risk",
+      mean_loading < loading_threshold & z_stat >= z_stat_threshold    ~ "Low Loading, High Risk",
+      mean_loading >= loading_threshold & z_stat < z_stat_threshold    ~ "High Loading, Low Risk",
+      TRUE                                                              ~ "Low Loading, Low Risk"
+    ),
+    top_candidate_label = if_else(quadrant == "High Loading, High Risk", toupper(variable), "")
+  )
+
+quadrant_plot <- ggplot(quadrant_df, aes(x = mean_loading, y = z_stat)) +
+  geom_hline(yintercept = z_stat_threshold, linetype = "dashed", color = "grey50") +
+  geom_vline(xintercept = loading_threshold, linetype = "dashed", color = "grey50") +
+  geom_point(aes(color = quadrant), size = 3, alpha = 0.7) +
+  geom_text_repel(
+    aes(label = top_candidate_label),
+    max.overlaps = 15,
+    size = 4,
+    fontface = "bold",
+    box.padding = 0.5,
+    point.padding = 0.5,
+    segment.color = 'grey50'
+  ) +
+  
+  scale_color_manual(
+    name = "Protein Category",
+    values = c(
+      "High Loading, High Risk" = "#870808", # Dark burgundy
+      "Low Loading, High Risk"  = "#e0bcbc", # Magenta
+      "High Loading, Low Risk"  = "#e0bcbc", # Light blue
+      "Low Loading, Low Risk"   = "grey70"   # Grey
+    )
+  ) +
+  
+  annotate("text", x = Inf, y = Inf, label = "Biologically Central &\nClinically Predictive", hjust = 1.1, vjust = 1.1, color = "black", fontface = "bold") +
+  annotate("text", x = -Inf, y = Inf, label = "Strong Predictors", hjust = -0.1, vjust = 1.2, color = "black", fontface = "italic") +
+  annotate("text", x = Inf, y = -Inf, label = "Biologically Central", hjust = 1.1, vjust = -0.2, color = "black", fontface = "italic") +
+  
+  labs(
+    title = "Analysis of Top Biomarker Candidates by Outcome Association",
+    subtitle = "Adjusted association of plasma proteins and incident CKD",
+    x = "Biological Importance (Factor 2 Loading in Kidney Tissue)",
+    y = "Association with Incident CKD (Cox z-statistic in Blood)"
+  ) +
+  theme_bw(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(size = 12, margin = margin(b=10))
+  )
+
+# Print the plot
+print(quadrant_plot)
+```
+
