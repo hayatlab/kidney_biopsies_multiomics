@@ -1,9 +1,9 @@
 #!/usr/bin/env Rscript
-# Supp. Fig. 13b — Volcano plot of the MAST DE between Xenium PECs in glomerular niche 20 and PECs in all other glomerular niches.
-# Panel        : All Supp Figures.pdf, Supplementary Figure 13, panel b
+# Supp. Fig. 18b — Volcano plot of the MAST DE between Xenium PECs in glomerular niche 20 and PECs in all other glomerular niches.
+# Panel        : All Supp Figures.pdf, Supplementary Figure 18, panel b
 # Reads        : $KB_ANALYSIS/celltype_concordance/outputs/crescent_check/de/markers_manualglom10.csv
 #                (analyses/08_glomerular_niche20_crescent/de_crescent_pec_mast.R on the output of 00_build_pec_manualglom10.py)
-# Writes       : $KB_FIG_OUT/S13/S13b_niche20_pec_volcano.pdf
+# Writes       : $KB_FIG_OUT/S18/S18b_niche20_pec_volcano.pdf
 # Plotting code: extracted verbatim from analyses/08_glomerular_niche20_crescent/niche20_volcano_gsea.R (save_volcano and
 #                the table preparation before it; the script cannot be sourced without re-running its GSEA). Same
 #                libraries loaded in the same order.
@@ -54,7 +54,7 @@ message(sprintf("  %d genes; UP(lfc>%.2f & padj<%.2f)=%d, DOWN=%d",
                 sum(markers$avg_log2FC > fc_cutoff & markers$p_val_adj < p_cutoff, na.rm = TRUE),
                 sum(markers$avg_log2FC < -fc_cutoff & markers$p_val_adj < p_cutoff, na.rm = TRUE)))
 
-volcano_pdf   <- fig_out("S13", "S13b_niche20_pec_volcano.pdf")
+volcano_pdf   <- fig_out("S18", "S18b_niche20_pec_volcano.pdf")
 volcano_title <- "niche 20 (crescent PEC) vs other PEC"
 save_volcano(markers, volcano_pdf, volcano_title, p_cutoff = p_cutoff, fc_cutoff = fc_cutoff)
 message(sprintf("Wrote volcano: %s", volcano_pdf))

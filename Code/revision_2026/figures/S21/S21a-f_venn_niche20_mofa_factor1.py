@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-"""Supp. Fig. 16a-f — Venn diagrams of glomerular niche-20 PEC DE genes vs the top-200 MCFA factor 1 loadings of the PT and PEC views (restricted universe).
-Panel        : All Supp Figures.pdf, Supplementary Figure 16, panels a-f (a PT UP, b PEC UP, c 3-way UP, d PT DOWN, e PEC DOWN, f 3-way DOWN)
+"""Supp. Fig. 21a-f — Venn diagrams of glomerular niche-20 PEC DE genes vs the top-200 MCFA factor 1 loadings of the PT and PEC views (restricted universe).
+Panel        : All Supp Figures.pdf, Supplementary Figure 21, panels a-f (a PT UP, b PEC UP, c 3-way UP, d PT DOWN, e PEC DOWN, f 3-way DOWN)
 Reads        : $KB_ANALYSIS/niche20_pec/DE/niche20_vs_others_pecOnly/markers_MAST_niche20_vs_others_pecOnly.csv (analyses/08_glomerular_niche20_crescent/niche20_volcano_gsea.R: copy of markers_manualglom10.csv from de_crescent_pec_mast.R)
                $KB_ANALYSIS/loadings~hvg~5.csv (MCFA factor loadings; producer outside this folder, see analyses/08_glomerular_niche20_crescent/README.md)
-Writes       : $KB_FIG_OUT/S16/S16{a..f}_venn_{PT_UP,PEC_UP,3way_UP,PT_DOWN,PEC_DOWN,3way_DOWN}.pdf
+Writes       : $KB_FIG_OUT/S21/S21{a..f}_venn_{PT_UP,PEC_UP,3way_UP,PT_DOWN,PEC_DOWN,3way_DOWN}.pdf
 Plotting code: analyses/08_glomerular_niche20_crescent/venn_niche20_mofa_factor1.py::load_de, load_factor1, draw_venn2, draw_venn3
                (imported unchanged); the set logic of main(), branch main_restricted_universe/top200, single-panel files,
                is extracted verbatim (the original loop also writes the other three variants and the tables).
@@ -34,8 +34,8 @@ def _load(path: Path, name: str):
 # equal-size Venn layouts
 v = _load(REPO / "analyses" / "08_glomerular_niche20_crescent" / "venn_niche20_mofa_factor1.py", "venn_niche20_mofa_factor1")
 
-PANEL = {("PT", "UP"): "S16a", ("PEC", "UP"): "S16b", ("3way", "UP"): "S16c",
-         ("PT", "DOWN"): "S16d", ("PEC", "DOWN"): "S16e", ("3way", "DOWN"): "S16f"}
+PANEL = {("PT", "UP"): "S21a", ("PEC", "UP"): "S21b", ("3way", "UP"): "S21c",
+         ("PT", "DOWN"): "S21d", ("PEC", "DOWN"): "S21e", ("3way", "DOWN"): "S21f"}
 
 
 def main() -> None:
@@ -59,10 +59,10 @@ def main() -> None:
             f1_, a1 = plt.subplots(figsize=(4.6, 3.9))
             v.draw_venn2(a1, A, B, lab_a, lab_b, colour, v.COL_N20,
                          f"{view} Factor1 {sign_word} vs niche20 {direction}")
-            out = fig_out("S16", f"{PANEL[(view, direction)]}_venn_{view}_{direction}.pdf")
+            out = fig_out("S21", f"{PANEL[(view, direction)]}_venn_{view}_{direction}.pdf")
             f1_.savefig(out)
             plt.close(f1_)
-            print(f"[S16] {out}: |A|={len(A)} |B|={len(B)} overlap={len(A & B)}")
+            print(f"[S21] {out}: |A|={len(A)} |B|={len(B)} overlap={len(A & B)}")
 
         A = R(F["PT"][key], U_3)
         B = R(F["PEC"][key], U_3)
@@ -72,10 +72,10 @@ def main() -> None:
                 f"niche20 {direction}\n(n={len(C)})")
         f3_, a3 = plt.subplots(figsize=(5.0, 4.7))
         v.draw_venn3(a3, A, B, C, labs, f"PT vs PEC Factor1 {sign_word} vs niche20 {direction}")
-        out = fig_out("S16", f"{PANEL[('3way', direction)]}_venn_3way_{direction}.pdf")
+        out = fig_out("S21", f"{PANEL[('3way', direction)]}_venn_3way_{direction}.pdf")
         f3_.savefig(out)
         plt.close(f3_)
-        print(f"[S16] {out}: |PT|={len(A)} |PEC|={len(B)} |niche20|={len(C)} all three={len(A & B & C)}")
+        print(f"[S21] {out}: |PT|={len(A)} |PEC|={len(B)} |niche20|={len(C)} all three={len(A & B & C)}")
 
 
 if __name__ == "__main__":

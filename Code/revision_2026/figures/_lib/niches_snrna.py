@@ -1,4 +1,4 @@
-"""Helpers shared by the entry scripts of the snRNA-seq PEC / immune subcluster panels (Fig. 6g-l, Supp. Fig. 13c-f).
+"""Helpers shared by the entry scripts of the snRNA-seq PEC / immune subcluster panels (Fig. 6g-l, Supp. Fig. 18c-f).
 
 - REPO: repository root; ANALYSES_09: analyses/09_snrna_pec_immune_subclusters (the shipped analysis code)
 - load_script(path): import a shipped analysis script as a module by its path (several names start with a digit

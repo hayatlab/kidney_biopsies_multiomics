@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
-# Supplementary Fig. 3a — chromVAR TF motif activity (left) and TF expression (right) along the PT->aPT ArchR
+# Supplementary Fig. 8a — chromVAR TF motif activity (left) and TF expression (right) along the PT->aPT ArchR
 # pseudotime for the 81 TFs selected by scMEGA::SelectTFs (motif activity vs expression r > 0.7, adj. p < 0.01):
 # rows = TFs (ordered by scMEGA::CorrelationHeatmap), columns = 100 smoothed pseudotime bins, values row-scaled.
-# Panel        : All Supp Figures.pdf, Supplementary Figure 3, panel a
+# Panel        : All Supp Figures.pdf, Supplementary Figure 8, panel a
 # Reads        : $KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scmega/egrn_tutorial/archr_dm/selected_tfs.csv
 #                  (the 81 selected TFs in SelectTFs order; analyses/10_atac_pt_apt_egrn/ATAC/scripts/
 #                  43_scmega_egrn_tutorial.R, TRAJ=archr_dm, job 339468 of 26 Oct 2026)
@@ -13,7 +13,7 @@
 #                  trajectories are computed before the peak-to-gene step, so they do not depend on P2G_FDR: the two
 #                  runs have identical selected_tfs.csv and bit-identical curves for the 80 shared TFs (checked
 #                  2026-11-12), and the _paper table holds all 81
-# Writes       : $KB_FIG_OUT/S3/S3a_tf_heatmap_cor70.{pdf,png}
+# Writes       : $KB_FIG_OUT/S8/S8a_tf_heatmap_cor70.{pdf,png}
 # Plotting code: extracted verbatim from analyses/10_atac_pt_apt_egrn/ATAC/scripts/43_scmega_egrn_tutorial.R, section 1
 #                (CorrelationHeatmap call, height rule and save_fig); the two trajectories are rebuilt as
 #                SummarizedExperiments from the saved table instead of scMEGA::GetTrajectory on the 1.2 GB paired object.
@@ -45,7 +45,7 @@ se_from <- function(label) {                            # one TF x 100-bin matri
   SummarizedExperiment(assays = S4Vectors::SimpleList(smoothMat = m))
 }
 trajMM <- se_from("TF activity"); trajRNA <- se_from("TF expression")
-FIG <- dirname(fig_out("S3", "S3a_tf_heatmap_cor70.pdf"))
+FIG <- dirname(fig_out("S8", "S8a_tf_heatmap_cor70.pdf"))
 
 # ---- verbatim from 43_scmega_egrn_tutorial.R ------------------------------------------------------------------------
 save_fig <- function(name, w, h, p = NULL, draw_fun = NULL, dir = FIG) {
@@ -63,7 +63,7 @@ ht_all <- suppressMessages(CorrelationHeatmap(trajectory1 = trajMM[df.cor$tfs, ]
                                               name1 = "TF activity", name2 = "Gene expression",
                                               labelTop1 = nrow(df.cor), labelTop2 = nrow(df.cor)))
 hh <- max(6, 0.13 * nrow(df.cor) + 2)
-save_fig(sprintf("S3a_tf_heatmap_cor%02d", round(100 * TF_COR)), 10, hh,
+save_fig(sprintf("S8a_tf_heatmap_cor%02d", round(100 * TF_COR)), 10, hh,
          draw_fun = function() draw(ht_all, heatmap_legend_side = "bottom", padding = unit(c(2, 2, 2, 12), "mm")))
 # -----------------------------------------------------------------------------------------------------------------------
-cat(sprintf("[S3a] %s\n", file.path(FIG, sprintf("S3a_tf_heatmap_cor%02d.pdf", round(100 * TF_COR)))))
+cat(sprintf("[S8a] %s\n", file.path(FIG, sprintf("S8a_tf_heatmap_cor%02d.pdf", round(100 * TF_COR)))))

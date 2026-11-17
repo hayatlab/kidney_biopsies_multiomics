@@ -48,12 +48,12 @@ logfc.threshold = 0, min.pct = 0)` on log-normalised counts (Seurat 5.2.0, MAST 
 | output | panel (entry script) |
 |---|---|
 | `crescent_check/de/dotplot_niche20_vs_other_pec_top5_bottom5_ndrg1_varscale.pdf` (ad hoc variant of step 2) | Fig. 6f (`figures/Fig6/Fig6f_pec_niche20_vs_other_dotplot.py`) |
-| `niche20_pec/DE/niche20_vs_others_pecOnly/volcano_niche20_vs_others_pecOnly.pdf` | Supp. Fig. 13b (`figures/S13/S13b_niche20_pec_volcano.R`) |
-| `niche20_pec/venn_mofa_factor1/main_restricted_universe/top200/venn_*.pdf` | Supp. Fig. 16a-f (`figures/S16/S16a-f_venn_niche20_mofa_factor1.py`) |
+| `niche20_pec/DE/niche20_vs_others_pecOnly/volcano_niche20_vs_others_pecOnly.pdf` | Supp. Fig. 18b (`figures/S18/S18b_niche20_pec_volcano.R`) |
+| `niche20_pec/venn_mofa_factor1/main_restricted_universe/top200/venn_*.pdf` | Supp. Fig. 21a-f (`figures/S21/S21a-f_venn_niche20_mofa_factor1.py`) |
 | `niche20_vs_MOFA_Factor1_3way_top200.xlsx` | Supplementary Data 21 (per the figure trace) |
-| `validation_data/niche20_score_validation/option1/*.pdf` | Supp. Fig. 17a-i (`figures/S17/S17a-i_niche20_validation_pseudotime.py`) |
+| `validation_data/niche20_score_validation/option1/*.pdf` | Supp. Fig. 22a-i (`figures/S22/S22a-i_niche20_validation_pseudotime.py`) |
 
-The niche-20 PEC DE table itself (`markers_manualglom10.csv`) also feeds Fig. 6f, Supp. Figs 16-17, the
+The niche-20 PEC DE table itself (`markers_manualglom10.csv`) also feeds Fig. 6f, Supp. Figs 21-22, the
 supplementary DE table, and the crescent ULM score of the snRNA-seq PEC subclusters (its positive genes at padj < 0.05;
 `analyses/09_snrna_pec_immune_subclusters/pec/pec_leiden_sweep.py`, used in Fig. 6h).
 
@@ -74,12 +74,12 @@ supplementary DE table, and the crescent ULM score of the snRNA-seq PEC subclust
   would have three levels and de_crescent_pec_mast.R would then include the term.
 - **Fig. 6f** is an ad hoc combination of the two figures of step 2: the direction-consistent gene selection (NDRG1
   instead of AFDN) with per-gene min-max scaling (`standard_scale='var'`) and the v1 title. The entry script reproduces it.
-- **Supp. Fig. 13b**: gene-label placement (ggrepel) is not seeded, so labels move between runs. The GSEA of step 3 runs on
+- **Supp. Fig. 18b**: gene-label placement (ggrepel) is not seeded, so labels move between runs. The GSEA of step 3 runs on
   a 468-gene universe: Hallmark returned one term (EPITHELIAL_MESENCHYMAL_TRANSITION, NES 1.98, adjusted P 0.012),
   Reactome and GO BP none.
-- **Supp. Fig. 16**: "top 200" means the 200 genes with the largest absolute factor 1 loading in a view, split by sign
+- **Supp. Fig. 21**: "top 200" means the 200 genes with the largest absolute factor 1 loading in a view, split by sign
   (PT 80 positive / 120 negative, PEC 69 / 131), then restricted to the Xenium panel and the view's genes; circles are not
   area-proportional.
-- **Supp. Fig. 17** is a consistency check, not an independent validation of the niche-20 signature: on the
+- **Supp. Fig. 22** is a consistency check, not an independent validation of the niche-20 signature: on the
   480-gene GSE294965 panel it is ~92% identical to the earlier niche-9 signature (23 up / 22 down genes; see
   `signature_overlap_vs_niche9.tsv`). The 95% CI whiskers of panels h-i are unseeded bootstraps.

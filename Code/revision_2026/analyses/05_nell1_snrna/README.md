@@ -33,8 +33,8 @@ them).
 ## Outputs and the panels that use them
 | output | panel (entry script) |
 |---|---|
-| `figures/nell1_app_expression_by_celltype.pdf`, left column "snRNA NELL1" (`::dotplot`) | Supp. Fig. 8a (`figures/S8/S8a_nell1_dotplot.py`) |
-| `figures/NELL1_snRNA_donor_egfr_scatter.pdf`, subpanels PT, POD, TAL, DCT (`::scatter_grid`) | Supp. Fig. 8b (`figures/S8/S8b_nell1_vs_egfr_per_donor.py`) |
+| `figures/nell1_app_expression_by_celltype.pdf`, left column "snRNA NELL1" (`::dotplot`) | Supp. Fig. 13a (`figures/S13/S13a_nell1_dotplot.py`) |
+| `figures/NELL1_snRNA_donor_egfr_scatter.pdf`, subpanels PT, POD, TAL, DCT (`::scatter_grid`) | Supp. Fig. 13b (`figures/S13/S13b_nell1_vs_egfr_per_donor.py`) |
 | `tables/expression_by_celltype.csv`, `pseudobulk_per_unit.csv`, `egfr_association.csv`, `01_meta.json` | read by the two entry scripts (they recompute the light aggregation from the objects only if the tables are missing, or with `--from-objects`) |
 
 ## Caveats (read before reusing)
@@ -43,7 +43,7 @@ them).
   `H.number`. Keep `tables/` private; the figures carry no identifiers.
 - snRNA donors: 61 (the donors of K94/K97 and K95/K98 give 2 samples each, pooled). The Xenium donor key is an
   approximation for the 33 control cores, which carry neither a T- nor an H-number (grouped by condition and eGFR).
-- The q values in Supp. Fig. 8b are BH over the 17 rows (16 cell types + all cells) of snRNA / donor / NELL1; n per
+- The q values in Supp. Fig. 13b are BH over the 17 rows (16 cell types + all cells) of snRNA / donor / NELL1; n per
   subpanel differs because a donor enters a cell type only with >= 20 nuclei of it (POD: 54 donors).
 - eGFR differs systematically between diseases; the partial Spearman adjusted for disease is in `egfr_association.csv`
   (and the forest plot), not in the published panel.

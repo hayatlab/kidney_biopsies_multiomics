@@ -1,15 +1,15 @@
 #!/usr/bin/env python
-"""Supp. Fig. 5d — per-core Xenium quality metrics against biopsy age at the Xenium run: median transcripts and genes per
+"""Supp. Fig. 10d — per-core Xenium quality metrics against biopsy age at the Xenium run: median transcripts and genes per
 cell, transcripts per 100 um2 cell area, genes at 100 transcripts, negative-probe counts per 10k transcripts and the
 mean Factor 1 score of PT cells; disease cores filled, control cores open; line and band = linear fit through the
 disease cores (n = 86) with its 95% confidence band; each box gives Spearman rho, the slope of the band and the slope
 adjusted for condition, each with its 95% CI (read from 02_association.py, not recomputed).
-Panel        : All Supp Figures.pdf, Supplementary Fig. 5, panel d (all six subpanels)
+Panel        : All Supp Figures.pdf, Supplementary Fig. 10, panel d (all six subpanels)
 Reads        : $KB_ANALYSIS/xenium_biopsy_age_qc/outputs/core_qc_metrics.csv
                  (analyses/06_xenium_biopsy_age_qc/01_core_qc_metrics.py)
                $KB_ANALYSIS/xenium_biopsy_age_qc/outputs/associations_biopsy_age.csv, rows subset == "disease"
                  (analyses/06_xenium_biopsy_age_qc/02_association.py)
-Writes       : $KB_FIG_OUT/S5/S5d_qc_metrics_vs_biopsy_age.pdf (+ .png)
+Writes       : $KB_FIG_OUT/S10/S10d_qc_metrics_vs_biopsy_age.pdf (+ .png)
 Plotting code: extracted verbatim from analyses/06_xenium_biopsy_age_qc/04_simple_plots.py, "Figure A" with
                coloured=False (that script has no functions and writes all its figures into the analysis workspace
                when run, so it is not imported) (original run: python 04_simple_plots.py, 2026-10-16 ->
@@ -89,9 +89,9 @@ def main():
                  "Box: Spearman ρ, slope of the band, and the slope adjusted for condition, each with 95% CI",
                  fontsize=8)
     fig.tight_layout(rect=(0, 0, 1, 0.885))
-    out = Path(fig_out("S5", "S5d_qc_metrics_vs_biopsy_age.pdf"))
+    out = Path(fig_out("S10", "S10d_qc_metrics_vs_biopsy_age.pdf"))
     fig.savefig(out); fig.savefig(out.with_suffix(".png"), dpi=220); plt.close(fig)
-    print(f"[S5d] wrote {out}", flush=True)
+    print(f"[S10d] wrote {out}", flush=True)
 
 
 if __name__ == "__main__":
