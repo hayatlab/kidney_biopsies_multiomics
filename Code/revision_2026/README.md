@@ -1,6 +1,6 @@
 # Code for the revised manuscript: analyses and figure panels (Leon Frommer)
 
-Saritas, Boys, Kuppe *et al.* — *Cellular and molecular determinants of human kidney disease: single-nuclei, ATAC-seq
+Saritas, Boys, Frommer, Kuppe *et al.* — *Cellular and molecular determinants of human kidney disease: single-nuclei, ATAC-seq
 and Xenium based high-resolution spatial mapping of human kidney diseases* (revision 2026).
 
 This folder holds the code behind the figure panels produced by Leon Frommer (Hayat lab): the Xenium cell typing,
