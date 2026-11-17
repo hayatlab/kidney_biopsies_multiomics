@@ -1,6 +1,6 @@
-"""Supplementary Fig. 3d — FOSL2 regulon in the r > 0.7 scMEGA eGRN: FOSL2 at the centre, its 114 target genes on a
+"""Supplementary Fig. 8d — FOSL2 regulon in the r > 0.7 scMEGA eGRN: FOSL2 at the centre, its 114 target genes on a
 ring ordered by TF-gene correlation; the 19 Factor-1 top-positive targets in orange and labelled (edge width = r).
-Panel        : All Supp Figures.pdf, Supplementary Figure 3, panel d
+Panel        : All Supp Figures.pdf, Supplementary Figure 8, panel d
 Reads        : $KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scmega/figures_paper/egrn_paper_views_edges.csv
                  (analyses/10_atac_pt_apt_egrn/ATAC/scripts/45_egrn_paper_views.py)
                $KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scmega/figures_paper/egrn_factor1_tf_side.csv
@@ -8,7 +8,7 @@ Reads        : $KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scmega/fig
                $KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/cis_regulatory_pt_apt/outputs/task3/
                  C4_factor1_top200_positive_genes.csv (column variable; rebuilt by
                  analyses/10_atac_pt_apt_egrn/make_factor1_pt_list.py)
-Writes       : $KB_FIG_OUT/S3/S3d_egrn_tf_centric_FOSL2/egrn_tf_centric/FOSL2.{pdf,png} (the panel) and the script's
+Writes       : $KB_FIG_OUT/S8/S8d_egrn_tf_centric_FOSL2/egrn_tf_centric/FOSL2.{pdf,png} (the panel) and the script's
                other TF-centred views (12 TFs; REL is not in the network), the multipage PDF, the composite and
                48_meta.json
 Plotting code: analyses/10_atac_pt_apt_egrn/ATAC/scripts/48_egrn_tf_centric_panels.py::main (imported unchanged; default
@@ -26,6 +26,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "_lib"))
 from atac_egrn import run_main  # noqa: E402  (also puts config/ on sys.path)
 from kbpaths import fig_out  # noqa: E402
 
-OUT = fig_out("S3", "S3d_egrn_tf_centric_FOSL2")
+OUT = fig_out("S8", "S8d_egrn_tf_centric_FOSL2")
 run_main("48_egrn_tf_centric_panels.py", [], OUT)
-print(f"[S3d] panel: {OUT}/egrn_tf_centric/FOSL2.pdf", flush=True)
+print(f"[S8d] panel: {OUT}/egrn_tf_centric/FOSL2.pdf", flush=True)

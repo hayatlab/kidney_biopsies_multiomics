@@ -10,7 +10,7 @@ Reads        : $KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scmega/egr
                  C4_factor1_top200_positive_genes.csv (columns variable, Loading; rebuilt by
                  analyses/10_atac_pt_apt_egrn/make_factor1_pt_list.py)
 Writes       : $KB_FIG_OUT/ED3/ED3l_egrn_two_modules/egrn_archr_dm_two_modules.{pdf,png} (the panel) and the other
-               outputs of the script (per-gene views, node / edge tables, egrn_factor1_targets_overview = Supp. Fig. 3c)
+               outputs of the script (per-gene views, node / edge tables, egrn_factor1_targets_overview = Supp. Fig. 8b)
 Plotting code: analyses/10_atac_pt_apt_egrn/ATAC/scripts/45_egrn_paper_views.py::main (imported unchanged; run with
                --run archr_dm as in job 339554 of 26 Oct 2026; module-level OUT redirected to $KB_FIG_OUT)
 Revision     : 2026-11-13, TF and target labels 1.4x larger (--label-scale, default here 1.4; writes

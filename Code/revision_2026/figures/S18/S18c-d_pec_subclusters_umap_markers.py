@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-"""Supp. Fig. 13c-d — snRNA-seq PEC subclusters (Leiden 0.8, 19 clusters, 7,004 nuclei): UMAP (c) and top-5
+"""Supp. Fig. 18c-d — snRNA-seq PEC subclusters (Leiden 0.8, 19 clusters, 7,004 nuclei): UMAP (c) and top-5
 Wilcoxon marker genes per subcluster (d).
-Panel        : All Supp Figures.pdf, Supplementary Figure 13, panels c-d
+Panel        : All Supp Figures.pdf, Supplementary Figure 18, panels c-d
 Reads        : $KB_ANALYSIS/pec_resubcluster_20260717/new_pec_annotation/pec_leiden_sweep.h5ad
                  (analyses/09_snrna_pec_immune_subclusters/pec/pec_leiden_sweep.py, conda base python, log
                   pec_leiden_sweep.log; holds the subset UMAP, leiden_0.8, crescent_lesion_score, provenance, the
                   palettes and the Wilcoxon result uns['rgg_leiden_0.8'] — nothing is recomputed)
-Writes       : $KB_FIG_OUT/S13/S13c_pec_subclusters_umap.{pdf,png}, $KB_FIG_OUT/S13/S13d_pec_subclusters_markers_dotplot.{pdf,png}
+Writes       : $KB_FIG_OUT/S18/S18c_pec_subclusters_umap.{pdf,png}, $KB_FIG_OUT/S18/S18d_pec_subclusters_markers_dotplot.{pdf,png}
 Plotting code: extracted verbatim from analyses/09_snrna_pec_immune_subclusters/pec/pec_leiden_sweep.py (module-level
                sweep loop, sections "UMAP" and "Wilcoxon markers" at r = 0.8, plus save()); the script runs the whole
                sweep at import, so its code cannot be imported
@@ -64,7 +64,7 @@ def main():
     fig.suptitle(f"PEC (level2==PEC, n={adata.n_obs}) - subset HVG/PCA/harmony - leiden {r}",
                  fontsize=13)
     fig.tight_layout()
-    save(fig, fig_out("S13", "S13c_pec_subclusters_umap"))
+    save(fig, fig_out("S18", "S18c_pec_subclusters_umap"))
 
     # ---- Wilcoxon markers (saved result uns['rgg_leiden_0.8'] instead of re-running rank_genes_groups)
     mk = sc.get.rank_genes_groups_df(adata, group=None, key=f"rgg_{key}")
@@ -82,8 +82,8 @@ def main():
     dp.make_figure()                       # dp.fig is None until this is called
     fig = dp.fig
     fig.suptitle(f"top-5 Wilcoxon markers per cluster - leiden {r}", fontsize=12, y=1.02)
-    save(fig, fig_out("S13", "S13d_pec_subclusters_markers_dotplot"))
-    print("[S13c-d] wrote", fig_out("S13", "S13c_pec_subclusters_umap.pdf"), "and the markers dotplot")
+    save(fig, fig_out("S18", "S18d_pec_subclusters_markers_dotplot"))
+    print("[S18c-d] wrote", fig_out("S18", "S18c_pec_subclusters_umap.pdf"), "and the markers dotplot")
 
 
 if __name__ == "__main__":

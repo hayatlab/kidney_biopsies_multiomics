@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-"""Supp. Fig. 4a — concordance of the per-cell scANVI label transfer from snRNA-seq (pred_level2, rows) with the final
+"""Supp. Fig. 9a — concordance of the per-cell scANVI label transfer from snRNA-seq (pred_level2, rows) with the final
 Xenium annotation (level2_refined, columns), row-normalised: fraction of the cells of each transferred label that end
 up in each final label.
-Panel        : All Supp Figures.pdf, Supplementary Fig. 4, panel a
+Panel        : All Supp Figures.pdf, Supplementary Fig. 9, panel a
 Reads        : $KB_ANALYSIS/celltype_concordance/outputs/xenium_labeled.h5ad, obs (analyses/02_xenium_celltyping/:
                  pred_level2 from 02_train_transfer.py, level2_refined from 09_level2_subcluster.py and
                  17_recover_pec_from_apt.py)
-Writes       : $KB_FIG_OUT/S4/S4a_heatmap_pred_level2_vs_refined.pdf (+ .png, S4a_pred_level2_vs_refined.csv)
+Writes       : $KB_FIG_OUT/S9/S9a_heatmap_pred_level2_vs_refined.pdf (+ .png, S9a_pred_level2_vs_refined.csv)
 Plotting code: analyses/02_xenium_celltyping/10_heatmap_pred_vs_refined.py::main (imported unchanged; its output
                folders config.FIG / config.MET are redirected and the files renamed)
                (original run: python 10_heatmap_pred_vs_refined.py, 2026-07-01, no log kept)
@@ -34,23 +34,23 @@ m10 = load_script("02_xenium_celltyping/10_heatmap_pred_vs_refined.py", on_path=
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Supp. Fig. 4a")
+    ap = argparse.ArgumentParser(description="Supp. Fig. 9a")
     ap.add_argument("--xenium", default=None, help="read this object instead of outputs/xenium_labeled.h5ad")
     ap.add_argument("--tag", default="", help="suffix for the output file names")
     args = ap.parse_args()
     C = m10.C
-    outdir = Path(fig_out("S4", "S4a_heatmap_pred_level2_vs_refined.pdf")).parent
+    outdir = Path(fig_out("S9", "S9a_heatmap_pred_level2_vs_refined.pdf")).parent
     C.FIG = C.MET = outdir
     C.ensure_dirs = lambda: None
     if args.xenium:
         C.XENIUM_LABELED = Path(args.xenium)
-    print(f"[S4a] object: {C.XENIUM_LABELED}", flush=True)
+    print(f"[S9a] object: {C.XENIUM_LABELED}", flush=True)
     m10.main()
     t = args.tag
-    for f in rename(outdir, {"heatmap_pred_level2_vs_refined.pdf": f"S4a_heatmap_pred_level2_vs_refined{t}.pdf",
-                             "heatmap_pred_level2_vs_refined.png": f"S4a_heatmap_pred_level2_vs_refined{t}.png",
-                             "pred_level2_vs_refined.csv": f"S4a_pred_level2_vs_refined{t}.csv"}):
-        print(f"[S4a] wrote {f}", flush=True)
+    for f in rename(outdir, {"heatmap_pred_level2_vs_refined.pdf": f"S9a_heatmap_pred_level2_vs_refined{t}.pdf",
+                             "heatmap_pred_level2_vs_refined.png": f"S9a_heatmap_pred_level2_vs_refined{t}.png",
+                             "pred_level2_vs_refined.csv": f"S9a_pred_level2_vs_refined{t}.csv"}):
+        print(f"[S9a] wrote {f}", flush=True)
 
 
 if __name__ == "__main__":

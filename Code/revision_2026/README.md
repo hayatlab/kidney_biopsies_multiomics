@@ -15,7 +15,7 @@ notebooks) are listed there too, with a pointer to where their code lives.
 | folder | contents |
 |---|---|
 | `analyses/` | the analyses, in pipeline order (`01_` … `10_`). Each folder has a README: purpose, run order, conda environment, inputs, outputs, panels. Scripts keep the names they were run under (several import each other). |
-| `figures/<figure>/` | one entry point per published panel, named after it (`Fig3/Fig3c_…`, `ED4/ED4d-e_…`, `S13/S13c-d_…`). Each reads saved analysis outputs and writes the panel to `$KB_FIG_OUT/<figure>/`; its header names the inputs, the plotting code, edits made afterwards in Illustrator, and how it was verified. |
+| `figures/<figure>/` | one entry point per published panel, named after it (`Fig3/Fig3c_…`, `ED4/ED4d-e_…`, `S18/S18c-d_…`). Each reads saved analysis outputs and writes the panel to `$KB_FIG_OUT/<figure>/`; its header names the inputs, the plotting code, edits made afterwards in Illustrator, and how it was verified. |
 | `config/` | `env.sh` (source this first), `kbpaths.py` / `kbpaths.R` (every data location in one place), `cores.py` (Xenium core ids). |
 | `envs/` | conda environment exports and R package lists. |
 | `FIGURE_PANELS.md` / `.csv` | panel → maker → entry script. |
@@ -62,18 +62,18 @@ K-numbers.
 
 - Every entry script was re-run on the saved analysis outputs (12 Nov 2026). Of the 68 panel letters made with this code,
   46 came out pixel- or byte-identical to the files used in the published figures, 7 are identical except for the title,
-  and the 4 panels of Supplementary Fig. 4 are identical when drawn from the earlier object they were made from (below);
+  and the 4 panels of Supplementary Fig. 9 are identical when drawn from the earlier object they were made from (below);
   the `re-run check` column of `FIGURE_PANELS.md` gives the result and the reason for every other panel.
-- Map panels (Fig. 3f, 6b, 6g; Extended Data Fig. 4d–e; Supplementary Fig. 7) now print the public core id in their
+- Map panels (Fig. 3f, 6b, 6g; Extended Data Fig. 4d–e; Supplementary Fig. 12) now print the public core id in their
   title; everything below the title is identical.
 - Some originals used unseeded randomness that cannot be replayed exactly: label placement (ggrepel, Supplementary
-  Fig. 13b), jitter (Extended Data Fig. 2e–g), bootstrap confidence intervals (Supplementary Fig. 17h–i), and the VIA
+  Fig. 18b), jitter (Extended Data Fig. 2e–g), bootstrap confidence intervals (Supplementary Fig. 22h–i), and the VIA
   pseudotime of the PEC trajectory, whose fitted object was not saved (Fig. 6i and the gene trends of 6j are produced
   only by re-running the analysis step; their entry scripts say how).
 - Fonts: several plotting scripts register Liberation Sans from `/usr/share/fonts/liberation-sans/` and otherwise fall
   back to DejaVu Sans, which shifts text and therefore the exact layout (seen for Fig. 6f and 6k on machines without the
   font).
-- Supplementary Fig. 4 was drawn from the cell-type object before 182 aPT cells were re-assigned to PEC; its entry
+- Supplementary Fig. 9 was drawn from the cell-type object before 182 aPT cells were re-assigned to PEC; its entry
   script reproduces it with `--xenium <that earlier object>` and draws the final object by default.
 
 ## How this folder was built

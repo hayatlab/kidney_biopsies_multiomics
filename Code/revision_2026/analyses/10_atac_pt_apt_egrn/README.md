@@ -4,7 +4,7 @@
 Orders proximal-tubule (PT) and adaptive PT (aPT) nuclei of the snRNA-seq / snATAC-seq GLUE co-embedding along one
 PT→aPT pseudotime, pairs RNA and ATAC nuclei with scMEGA, fits an ArchR trajectory on the joint diffusion map, infers
 the enhancer gene-regulatory network (eGRN) along it and draws the network views of Extended Data Fig. 3j–m and
-Supplementary Fig. 3. Everything here is the rerun of 26 Oct 2026 on the **glue_v3** co-embedding, from which the AKI
+Supplementary Fig. 8. Everything here is the rerun of 26 Oct 2026 on the **glue_v3** co-embedding, from which the AKI
 controls (K95, K96, K98; filtered by cell-id prefix) and the snATAC cluster pt_C5 were removed.
 
 - **Embedding and pseudotime** — `02` attaches the 30-dim GLUE latent to the ArchR gene-score matrix; `03` draws
@@ -83,10 +83,10 @@ Seurat 5.3.0, JASPAR2020, BSgenome.Hsapiens.UCSC.hg38, EnsDb.Hsapiens.v86. Human
 | ED Fig. 3l, network | `figures/ED3/ED3l_egrn_two_modules.py` | 45: `egrn_archr_dm_two_modules.pdf` |
 | ED Fig. 3l, JUN / HNF4A insets | `figures/ED3/ED3l_insets_scMEGA_TF_JUN_HNF4A.R` | 43 `_paper`: re-drawn from `pseudotime_curves.csv.gz` + `tf_centrality.csv` (the plotting code of 43, verbatim) |
 | ED Fig. 3m | `figures/ED3/ED3m_egrn_module_timing.py` | 46: `egrn_module_timing.pdf`, panels A–C (bottom panel printed from September, see caveats) |
-| Supp. Fig. 3a | `figures/S3/S3a_tf_activity_expression_heatmap.R` | 43 `archr_dm`: `tf_heatmap_cor70.pdf`, re-drawn from the saved curves |
-| Supp. Fig. 3b | `figures/S3/S3b_egrn_factor1_tf_ranking.py` | 47: `egrn_factor1_tf_ranking.pdf` |
-| Supp. Fig. 3c | `figures/S3/S3c_egrn_factor1_targets_overview.py` | 45: `egrn_factor1_targets_overview.pdf` |
-| Supp. Fig. 3d | `figures/S3/S3d_egrn_tf_centric_FOSL2.py` | 48: `egrn_tf_centric/FOSL2.pdf` |
+| Supp. Fig. 8a | `figures/S8/S8a_tf_activity_expression_heatmap.R` | 43 `archr_dm`: `tf_heatmap_cor70.pdf`, re-drawn from the saved curves |
+| Supp. Fig. 8c | `figures/S8/S8c_egrn_factor1_tf_ranking.py` | 47: `egrn_factor1_tf_ranking.pdf` |
+| Supp. Fig. 8b | `figures/S8/S8b_egrn_factor1_targets_overview.py` | 45: `egrn_factor1_targets_overview.pdf` |
+| Supp. Fig. 8d | `figures/S8/S8d_egrn_tf_centric_FOSL2.py` | 48: `egrn_tf_centric/FOSL2.pdf` |
 
 Every entry script reproduces its original file pixel-identically (12 Nov 2026; `build/verification/atac_snrna.csv`).
 Release patches (output folders `OUT` / `TABLEDIR`, defaults = original folders): `build/patch_rules/fig_atac_snrna.py`.
@@ -114,8 +114,8 @@ Release patches (output folders `OUT` / `TABLEDIR`, defaults = original folders)
   samples: K94 and K97 are two biopsies of one person and enter as two curves.
 - **Stale labels in 47.** Its figure legend and meta json say "BH-FDR < 0.05 over 86 TFs" and "population = 388 targets,
   46 Factor-1 targets"; the test runs on the rerun network (80 TFs, 337 targets, 43 Factor 1 genes; 9 TFs at FDR < 0.05).
-  The published Supp. Fig. 3b does not show that legend.
-- **Supp. Fig. 3a is drawn from the `_paper` table.** The `archr_dm` run saves curves only for its 80 network TFs (NR1H4,
+  The published Supp. Fig. 8c does not show that legend.
+- **Supp. Fig. 8a is drawn from the `_paper` table.** The `archr_dm` run saves curves only for its 80 network TFs (NR1H4,
   selected but without an edge at FDR < 1e-50, is missing); the `_paper` table holds all 81 selected TFs and its curves
   for the 80 shared TFs are bit-identical to `archr_dm`'s.
 - **Factor 1 gene list.** Top 200 genes by |loading| of the PT view of MCFA Factor 1, of which the 80 with a positive
