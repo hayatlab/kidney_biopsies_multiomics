@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 """Stage E.2 -- concatenate the local-CCI chunks and draw Fig 3i (Vivien takeover).
 
-Replaces Code/spatial_cci/2_postprocess_cci_res.py (== the `concat_cci_results.py` of
-Vivien's email) and the `vs_factor2` panel of 3_plot_cci_score.py (== 132_plot_local_cci.py).
+Replaces the first-submission scripts spatial_cci/2_postprocess_cci_res.py (== the `concat_cci_results.py` of
+Vivien's email) and the `vs_factor2` panel of 3_plot_cci_score.py (== 132_plot_local_cci.py); neither is in this
+repository any more.
 
 `cci_score_df.parquet` -- the input to every Fig 3i panel -- was never saved and is not on
 disk anywhere, so it is rebuilt here from the 16 chunk pairs produced by Stage E.1.
