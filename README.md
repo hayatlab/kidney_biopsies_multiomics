@@ -14,11 +14,15 @@ Saritas T1,2*, Boys C3*, Kuppe C1*, Frommer L1, Maryam S1, Goepp V1, SA Gómez-O
 | [`Code/Preprocessing_Xenium/`](Code/Preprocessing_Xenium) | Xenium preprocessing: core assignment, quality metrics, first cell-type annotation. |
 | [`Code/CCI_Niches/`](Code/CCI_Niches) | Cell-cell interactions per spatial niche (LIANA, CrossTalkeR). |
 | [`Code/ukbb_processing/`](Code/ukbb_processing) | UK Biobank plasma proteomics analyses. |
-| `Code/cell_boundaries/`, `Code/nh_analysis/`, `Code/spatial_cci/`, `Code/plot_egfr_f2_on_spatial/`, `Code/milo/`, `Code/utils/` | First-submission versions of the Xenium neighbourhood, cell-cell interaction and Milo analyses. The versions used for the revised figures are in `Code/revision_2026/analyses/03_xenium_factor1_neighbourhoods_cci/`. |
+| [`Code/cell_boundaries/`](Code/cell_boundaries), [`Code/plot_egfr_f2_on_spatial/`](Code/plot_egfr_f2_on_spatial) | Two first-submission scripts that are still needed: `1_preprocess_xenium.py` and `1_preproc_cell_boundaries.py` write the cell polygons of the 2025 three-region Xenium object that Fig. 6g (right) reads. |
 
 The first-submission NicheCompass and PEC trajectory code (`Code/Niche_analysis/`, `Code/Trajectory/`) was replaced by
 `Code/revision_2026/analyses/01_xenium_preprocessing_niches/` and
 `Code/revision_2026/analyses/09_snrna_pec_immune_subclusters/`.
+The first-submission Xenium neighbourhood and cell-cell interaction scripts (`Code/nh_analysis/`, `Code/spatial_cci/`,
+`Code/utils/` and the plotting scripts of `Code/cell_boundaries/` and `Code/plot_egfr_f2_on_spatial/`) were replaced by
+`Code/revision_2026/analyses/03_xenium_factor1_neighbourhoods_cci/`. The Milo scripts (`Code/milo/`) were removed
+because no figure of the revised manuscript uses them.
 
 ## License
 

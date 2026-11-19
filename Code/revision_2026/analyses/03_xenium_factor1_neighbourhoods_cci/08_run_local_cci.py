@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 """Stage E.1 -- local CellPhoneDB CCI within 2-hop Voronoi neighbourhoods (Vivien takeover).
 
-Reproduces Code/spatial_cci/1_run_local_cci.py on the new 5-run Xenium object.
+Reproduces the first-submission script spatial_cci/1_run_local_cci.py (no longer in this repository) on the
+new 5-run Xenium object.
 For every root cell, its 2-hop neighbourhood is treated as a mini tissue and
 `cpdb_statistical_analysis_complex_method` is run on it (200 permutations, as in the
 original's `work()`), giving a ligand-receptor score and p-value per cell-type pair.

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 """Stage C -- distance-bounded Voronoi graphs + 2-hop neighbourhood composition.
 
-Reproduces Code/nh_analysis/1_compute_nh.py (original paper code) on the new 5-run Xenium object.
+Reproduces the first-submission script nh_analysis/1_compute_nh.py (original paper code, no longer in this
+repository) on the new 5-run Xenium object.
 
 Algorithm, unchanged from the original:
   1. per TMA core, Voronoi diagram on cell CENTROIDS

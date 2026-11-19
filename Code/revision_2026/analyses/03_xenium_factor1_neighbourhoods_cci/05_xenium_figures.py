@@ -13,6 +13,8 @@
           <- nh_analysis/3_plot_nh_compo_niche.py
   suppl7  per-core cell-boundary maps: cell type, Factor1, niches
           <- cell_boundaries/2_plot_cell_boundaries.py + 3_plot_niches_cell_boundaries.py
+  (`<-` names the first-submission script that a panel function replaces; those scripts are no longer in this
+  repository.)
 
 Ribbon method is the original's: per level, LSQUnivariateSpline(k=3) with 8 interior knots
 over the crop range, clip to [0,1], stack with fill_between. The original HARD-CODED the

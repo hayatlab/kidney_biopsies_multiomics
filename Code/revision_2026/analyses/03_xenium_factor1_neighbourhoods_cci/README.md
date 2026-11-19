@@ -6,9 +6,12 @@ Projects the MCFA factors (the factor of interest is Factor 1) of the snRNA-seq 
 neighbourhood composition of every cell (by cell type and by NicheCompass niche), runs a local CellPhoneDB v5 analysis
 inside each 2-hop neighbourhood, scores NF-kB activity (PROGENy) per cell, rebuilds a per-core eGFR table, and draws the
 Xenium panels of Fig. 3, Extended Data Fig. 4 and 6 and Supplementary Fig. 13. It is a re-implementation, on the final
-5-run Xenium object (258,375 cells, 119 cores, 16 `level2_refined` cell types), of the original paper code
-(`Code/plot_egfr_f2_on_spatial`, `Code/nh_analysis`, `Code/spatial_cci`, `Code/cell_boundaries`), with Factor 1
-replacing Factor 2. Human GRCh38, HGNC symbols, seed 42.
+5-run Xenium object (258,375 cells, 119 cores, 16 `level2_refined` cell types), of the first-submission code
+(`plot_egfr_f2_on_spatial`, `nh_analysis`, `spatial_cci`, `cell_boundaries`), with Factor 1 replacing Factor 2.
+The first-submission scripts that this folder replaces are no longer in this repository; the two that remain,
+`Code/cell_boundaries/1_preproc_cell_boundaries.py` and `Code/plot_egfr_f2_on_spatial/1_preprocess_xenium.py`,
+write the cell polygons of the 2025 three-region object that Fig. 6g (right) still reads. Human GRCh38, HGNC
+symbols, seed 42.
 
 Function and file names still carry the panel letters of an earlier draft: `fig3d` = Fig. 3c, `fig3g` = Fig. 3f,
 `fig3h` = Fig. 3g, `fig3i` = Fig. 3h, `fig3j` = Fig. 3i, `ed3b` = ED 4c, `ed3f` = ED 4f, `suppl7` = Supp. Fig. 13.
