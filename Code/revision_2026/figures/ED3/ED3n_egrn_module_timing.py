@@ -1,12 +1,12 @@
-"""Extended Data Fig. 3m — the two eGRN modules along the PT->aPT pseudotime: z-scored TF motif activity, TF expression
+"""Extended Data Fig. 3n — the two eGRN modules along the PT->aPT pseudotime: z-scored TF motif activity, TF expression
 and target expression per TF (thin lines) and module means with 95% CI (thick lines); grey band = both modules
 mid-transition; dashed line = crossing of the module means.
-Panel        : Extended Data Figures.pdf, Extended Data Figure 3, panel m (top: TF activity = panel A of the output
+Panel        : Extended Data Figures.pdf, Extended Data Figure 3, panel n (top: TF activity = panel A of the output
                file; middle: TF expression = panel B; bottom: Target expression = panel C)
 Reads        : $KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scmega/egrn_tutorial/archr_dm/{grn_edges.csv,
                  pseudotime_curves.csv.gz, selected_tfs.csv} (analyses/10_atac_pt_apt_egrn/ATAC/scripts/
                  43_scmega_egrn_tutorial.R, TRAJ=archr_dm)
-Writes       : $KB_FIG_OUT/ED3/ED3m_egrn_module_timing/egrn_module_timing.{pdf,png} (panels A-C are ED 3m) and the
+Writes       : $KB_FIG_OUT/ED3/ED3n_egrn_module_timing/egrn_module_timing.{pdf,png} (panels A-C are ED 3n) and the
                script's tables (per-TF timing, module curves, permutation tests, cross-correlation, meta json)
 Plotting code: analyses/10_atac_pt_apt_egrn/ATAC/scripts/46_egrn_module_timing.py::main (imported unchanged; default
                options as in job 339554 of 26 Oct 2026; module-level OUT redirected to $KB_FIG_OUT)
@@ -31,6 +31,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "_lib"))
 from atac_egrn import run_main  # noqa: E402  (also puts config/ on sys.path)
 from kbpaths import fig_out  # noqa: E402
 
-OUT = fig_out("ED3", "ED3m_egrn_module_timing")
+OUT = fig_out("ED3", "ED3n_egrn_module_timing")
 run_main("46_egrn_module_timing.py", [], OUT)
-print(f"[ED3m] panels A-C of {OUT}/egrn_module_timing.pdf", flush=True)
+print(f"[ED3n] panels A-C of {OUT}/egrn_module_timing.pdf", flush=True)

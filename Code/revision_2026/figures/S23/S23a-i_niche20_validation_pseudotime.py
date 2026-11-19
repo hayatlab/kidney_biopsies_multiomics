@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-"""Supp. Fig. 22a-i — niche-20 net score along the crescent-formation trajectory of an external glomerular dataset (GSE294965, Sultana et al.).
-Panel        : All Supp Figures.pdf, Supplementary Figure 22, panels a-i
+"""Supp. Fig. 23a-i — niche-20 net score along the crescent-formation trajectory of an external glomerular dataset (GSE294965, Sultana et al.).
+Panel        : All Supp Figures.pdf, Supplementary Figure 23, panels a-i
                a-d PCA of glomeruli coloured by disease / DPT pseudotime / k-means cluster / niche-20 net score
                e-f % disease per k-means cluster / per pseudotime quadrant; g pseudotime vs net score; h-i net score per
                k-means cluster / per quadrant
@@ -10,8 +10,8 @@ Reads        : $KB_ANALYSIS/validation_data/niche20_score_validation/option1/ada
                $KB_ANALYSIS/celltype_concordance/outputs/crescent_check/de/markers_manualglom10.csv (de_crescent_pec_mast.R;
                only to rebuild the signature gene lists, checked against the saved signature_genes_used.tsv)
                $KB_ANALYSIS/validation_data/niche20_score_validation/option1/summary.tsv (statistics checked against it)
-Writes       : $KB_FIG_OUT/S22/S22a-d_pca_overview.pdf, S22e_heatmap_disease_kmeans.pdf, S22f_heatmap_disease_quadrant.pdf,
-               S22g_scatter_pseudotime_vs_niche20.pdf, S22h-i_score_by_paper_grouping.pdf
+Writes       : $KB_FIG_OUT/S23/S23a-d_pca_overview.pdf, S23e_heatmap_disease_kmeans.pdf, S23f_heatmap_disease_quadrant.pdf,
+               S23g_scatter_pseudotime_vs_niche20.pdf, S23h-i_score_by_paper_grouping.pdf
 Plotting code: extracted verbatim from analyses/08_glomerular_niche20_crescent/niche20_validation_pseudotime.py, section
                "5. Plots" (the script is not importable: it runs the whole analysis at import). Statistics in the titles
                (Spearman, Kruskal-Wallis) are recomputed from the saved table with the original code and asserted equal
@@ -87,7 +87,7 @@ def main() -> None:
     for k, val in (("spearman_score_vs_pseudotime", rs_pt), ("spearman_score_vs_pseudotime_p", p_pt),
                    ("kruskal_kmeans_p", p_km), ("kruskal_quadrant_p", p_q)):
         assert np.isclose(float(summ[k]), val, rtol=1e-9, atol=0), f"{k}: {val} vs saved {summ[k]}"
-    print(f"[S22] Spearman rho={rs_pt:.3f} p={p_pt:.2e}; Kruskal k-means p={p_km:.2e}; quadrants p={p_q:.2e}")
+    print(f"[S23] Spearman rho={rs_pt:.3f} p={p_pt:.2e}; Kruskal k-means p={p_km:.2e}; quadrants p={p_q:.2e}")
     ct_km = pd.crosstab(adata.obs["Disease"], adata.obs["KMeans_cluster"])
     ct_q = pd.crosstab(adata.obs["Disease"], adata.obs["Quadrant"])
 
@@ -103,7 +103,7 @@ def main() -> None:
     sc.pl.pca(adata, color=NET, ax=axes[3], show=False, cmap="RdBu_r",
               title="niche-20 net score")
     fig.tight_layout()
-    fig.savefig(fig_out("S22", "S22a-d_pca_overview.pdf"), bbox_inches="tight")
+    fig.savefig(fig_out("S23", "S23a-d_pca_overview.pdf"), bbox_inches="tight")
     plt.close(fig)
 
     fig, axes = plt.subplots(1, 2, figsize=(8.0, 3.6))
@@ -122,7 +122,7 @@ def main() -> None:
         ax.set_ylabel("niche-20 net score")
         ax.axhline(0, color="grey", lw=0.5, ls=":")
     fig.tight_layout()
-    fig.savefig(fig_out("S22", "S22h-i_score_by_paper_grouping.pdf"))
+    fig.savefig(fig_out("S23", "S23h-i_score_by_paper_grouping.pdf"))
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(4.6, 3.6))
@@ -140,7 +140,7 @@ def main() -> None:
     ax.set_title(f"polygon-level: ρ={rs_pt:.2f} (Spearman, p={p_pt:.1e})", fontsize=9)
     ax.legend(fontsize=7, loc="best", frameon=False)
     fig.tight_layout()
-    fig.savefig(fig_out("S22", "S22g_scatter_pseudotime_vs_niche20.pdf"))
+    fig.savefig(fig_out("S23", "S23g_scatter_pseudotime_vs_niche20.pdf"))
     plt.close(fig)
 
     def heatmap_pct(crosstab, title, out_pdf):
@@ -151,8 +151,8 @@ def main() -> None:
         fig.tight_layout()
         fig.savefig(out_pdf, bbox_inches="tight")
         plt.close(fig)
-    heatmap_pct(ct_q, "% disease per pseudotime quadrant", fig_out("S22", "S22f_heatmap_disease_quadrant.pdf"))
-    heatmap_pct(ct_km, "% disease per kmeans cluster", fig_out("S22", "S22e_heatmap_disease_kmeans.pdf"))
+    heatmap_pct(ct_q, "% disease per pseudotime quadrant", fig_out("S23", "S23f_heatmap_disease_quadrant.pdf"))
+    heatmap_pct(ct_km, "% disease per kmeans cluster", fig_out("S23", "S23e_heatmap_disease_kmeans.pdf"))
 
 
 if __name__ == "__main__":

@@ -33,14 +33,14 @@ reads only the disease rows of step 2, which did not change in that re-run).
 ## Outputs and the panels that use them
 | output | panel (entry script) |
 |---|---|
-| `figures/S1_simple_scatter_nocolour.pdf` (all six subpanels) from `outputs/core_qc_metrics.csv` + `associations_biopsy_age.csv` | Supp. Fig. 10d (`figures/S10/S10d_qc_metrics_vs_biopsy_age.py`) |
+| `figures/S1_simple_scatter_nocolour.pdf` (all six subpanels) from `outputs/core_qc_metrics.csv` + `associations_biopsy_age.csv` | Supp. Fig. 11d (`figures/S11/S11d_qc_metrics_vs_biopsy_age.py`) |
 
 ## Caveats (read before reusing)
 - **Biopsy year of the control cores is an assumption.** `01_core_qc_metrics.py` sets `CTRL_YEAR_OVERRIDE = 2000`
   (collaborator statement, 2026-10-16: all Apollo pre-transplant control cores were biopsied in 2000; set to 1 July
   2000), overriding the workbook dates (2021-2024); `biopsy_date_overridden` flags the 33 cores. The disease-core
   analysis (n = 86) does not depend on it; the all-core estimates do (their unadjusted correlations change sign).
-- **The published Supp. Fig. 10d predates that override.** In the published panel the open circles (controls) sit at
+- **The published Supp. Fig. 11d predates that override.** In the published panel the open circles (controls) sit at
   biopsy ages of 0-5 years (workbook dates); the file on disk and the shipped code place all 33 at 24.8 years. The
   disease cores, the fitted lines and bands and every printed statistic are identical in both versions.
 - All cores were measured in one Xenium run, so biopsy age is not confounded with run date. The control cores form

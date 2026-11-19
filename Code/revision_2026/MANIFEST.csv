@@ -38,7 +38,7 @@ analyses/02_xenium_celltyping/03_leiden_sweep.py,$KB_ANALYSIS/celltype_concordan
 analyses/02_xenium_celltyping/03_leiden_sweep.sh,$KB_ANALYSIS/celltype_concordance/03_leiden_sweep.sh,slurm wrapper,5731bab047aa,9b2428949358,2,0,
 analyses/02_xenium_celltyping/09_level2_subcluster.py,$KB_ANALYSIS/celltype_concordance/09_level2_subcluster.py,analysis,9c1c7e655eba,9c1c7e655eba,0,0,
 analyses/02_xenium_celltyping/10_heatmap_pred_vs_refined.py,$KB_ANALYSIS/celltype_concordance/10_heatmap_pred_vs_refined.py,analysis,dcc90887a65b,dcc90887a65b,0,0,
-analyses/02_xenium_celltyping/12_umap_level2_refined.py,$KB_ANALYSIS/celltype_concordance/12_umap_level2_refined.py,analysis,1a1ec3ececae,1a1ec3ececae,0,0,
+analyses/02_xenium_celltyping/12_umap_level2_refined.py,$KB_ANALYSIS/celltype_concordance/12_umap_level2_refined.py,analysis,1a1ec3ececae,c3da779524f3,0,0,
 analyses/02_xenium_celltyping/13_dotplot_bubble.py,$KB_ANALYSIS/celltype_concordance/13_dotplot_bubble.py,analysis,d2d786360fb7,d2d786360fb7,0,0,
 analyses/02_xenium_celltyping/15_update_metadata_slope.py,$KB_ANALYSIS/celltype_concordance/15_update_metadata_slope.py,analysis,341d87c08e2f,4445b4766418,1,1,
 analyses/02_xenium_celltyping/16_apply_metadata_to_h5ad.py,$KB_ANALYSIS/celltype_concordance/16_apply_metadata_to_h5ad.py,analysis,36e38259b071,4ee901866eba,0,2,
@@ -69,7 +69,7 @@ analyses/03_xenium_factor1_neighbourhoods_cci/34_cci_panel.py,$KB_ANALYSIS/vivie
 analyses/03_xenium_factor1_neighbourhoods_cci/34b_cci_top_pairs.sh,$KB_ANALYSIS/vivien_takeover/scripts/34b_cci_top_pairs.sh,slurm wrapper,d712f308ec53,811530ca17e8,3,0,
 analyses/04_snrna_overview_composition/01_build_clr_inputs.R,$KB_ANALYSIS/Charlotte_help/scripts/01_build_clr_inputs.R,analysis,feec3a27160f,f3c9298c9f46,1,0,
 analyses/04_snrna_overview_composition/01b_umap_from_csv.py,$KB_ANALYSIS/snrna_overview_20260831/01b_umap_from_csv.py,analysis,f48b72945172,b384b7caa2e2,2,0,
-analyses/04_snrna_overview_composition/02_ext2e_clr_compositions_boxplot.R,$KB_ANALYSIS/Charlotte_help/scripts/02_ext2e_clr_compositions_boxplot.R,analysis,649b0806f64b,0226155368ac,1,2,
+analyses/04_snrna_overview_composition/02_ext2e_clr_compositions_boxplot.R,$KB_ANALYSIS/Charlotte_help/scripts/02_ext2e_clr_compositions_boxplot.R,analysis,649b0806f64b,7d06a9279fae,1,2,edited in the release on 19 Nov 2026 (CHANGED 6: final panels of the figure PDFs of 18 Nov 2026); the workspace copy is the run of 25 Sep
 analyses/04_snrna_overview_composition/03_overview_figures_v2.py,$KB_ANALYSIS/snrna_overview_20260831/03_overview_figures_v2.py,analysis,b87854660347,f8d7fb72eff1,2,0,
 analyses/04_snrna_overview_composition/03_overview_figures_v2.sh,$KB_ANALYSIS/snrna_overview_20260831/03_overview_figures_v2.sh,slurm wrapper,afa1d9fefc91,3da2f9df4384,3,0,
 analyses/04_snrna_overview_composition/labels.py,$KB_PROJECT/kidney-biopsy-explorer/export/lib/labels.py,analysis,36a4b29885a6,36a4b29885a6,0,0,palette/label helper (from the explorer export)
@@ -124,8 +124,12 @@ analyses/10_atac_pt_apt_egrn/ATAC/scripts/27_scmega_run.R,$KB_ANALYSIS/aki_c5_ex
 analyses/10_atac_pt_apt_egrn/ATAC/scripts/31_archr_trajectory.R,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/31_archr_trajectory.R,analysis,3d3503ec4329,2e2ff4d39a35,1,0,
 analyses/10_atac_pt_apt_egrn/ATAC/scripts/34_panels_a_b_archr.py,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/34_panels_a_b_archr.py,analysis,21f9626b4d08,bf660b18e71d,1,1,
 analyses/10_atac_pt_apt_egrn/ATAC/scripts/43_scmega_egrn_tutorial.R,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/43_scmega_egrn_tutorial.R,analysis,1b13572003a2,65fcafcda1b0,1,0,
-analyses/10_atac_pt_apt_egrn/ATAC/scripts/45_egrn_paper_views.py,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/45_egrn_paper_views.py,analysis,e6a17eb3e4d7,8ddf35e203b8,1,2,
+analyses/10_atac_pt_apt_egrn/ATAC/scripts/45_egrn_paper_views.py,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/45_egrn_paper_views.py,analysis,e6a17eb3e4d7,c90bde60a352,1,2,
 analyses/10_atac_pt_apt_egrn/ATAC/scripts/46_egrn_module_timing.py,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/46_egrn_module_timing.py,analysis,328e8d46c791,2844e984e8c7,1,2,
 analyses/10_atac_pt_apt_egrn/ATAC/scripts/47_egrn_factor1_tf_side.py,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/47_egrn_factor1_tf_side.py,analysis,3415ea2a2945,1fc41a2059de,1,10,
 analyses/10_atac_pt_apt_egrn/ATAC/scripts/48_egrn_tf_centric_panels.py,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/ATAC/scripts/48_egrn_tf_centric_panels.py,analysis,fee07f9da1b6,848defaceeb8,1,5,
 analyses/10_atac_pt_apt_egrn/job_43_egrn_paper_p2g1e-4.sh,$KB_ANALYSIS/aki_c5_exclusion_20261022/atac_rerun/logs/job_43_egrn_paper_p2g1e-4.sh,slurm wrapper,4dbb14940b1f,84555f5ddbe4,3,0,
+analyses/11_xenium_nuclear_pseudobulks/01_xenium_pseudobulk.py,$KB_ANALYSIS/mcfa_xenium_pseudobulk_20261026/scripts/01_xenium_pseudobulk.py,analysis,47a9dffbcc78,1b918234d882,1,0,added 19 Nov 2026 (input of Supplementary Fig. 27)
+analyses/11_xenium_nuclear_pseudobulks/04_nuclear_pseudobulk.py,$KB_ANALYSIS/xenium_zenodo_20261027/scripts/04_nuclear_pseudobulk.py,analysis,cc4adf8e5186,5efb3cdaf66c,1,1,added 19 Nov 2026 (input of Supplementary Fig. 27)
+analyses/11_xenium_nuclear_pseudobulks/common.py,$KB_ANALYSIS/xenium_zenodo_20261027/scripts/common.py,analysis,a7dd1aa57dd1,ca491523252c,3,0,added 19 Nov 2026; helper module of the Xenium data preparation
+analyses/11_xenium_nuclear_pseudobulks/sbatch_04_nuclear_pseudobulk.sh,$KB_ANALYSIS/xenium_zenodo_20261027/scripts/sbatch_04_nuclear_pseudobulk.sh,slurm wrapper,9e7d52da9511,7ee851cfc107,3,0,added 19 Nov 2026

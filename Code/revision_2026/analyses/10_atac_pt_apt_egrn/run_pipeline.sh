@@ -1,5 +1,5 @@
 #!/bin/bash
-# Slim SLURM driver for the PT -> aPT snRNA/snATAC trajectory and scMEGA eGRN analysis behind Extended Data Fig. 3j-m
+# Slim SLURM driver for the PT -> aPT snRNA/snATAC trajectory and scMEGA eGRN analysis behind Extended Data Fig. 3k-n
 # and Supplementary Fig. 8a-d (the AKI / pt_C5 exclusion rerun on the glue_v3 co-embedding, 26 Oct 2026).
 #
 # It submits only the steps those panels need, with the conda environments, resources and commands of the original
@@ -21,9 +21,9 @@
 #   27  27_scmega_run.R            scmega/inputs (25), trajectory_pt_traj.csv (26) -> scmega/outputs/obj_pair.rds
 #   31  31_archr_trajectory.R      obj_pair.rds (27), glue_latent.csv (25), HANDOFF (12) -> tables/archr_trajectories.csv
 #   34  34_panels_a_b_archr.py     HANDOFF (12), archr_trajectories.csv (31), sample_metadata_milo.csv (ext)
-#                                  [ED 3j-k; it does not need 28 or 33, which the original 34_figs job also ran]
+#                                  [ED 3k-l; it does not need 28 or 33, which the original 34_figs job also ran]
 #   43  43_scmega_egrn_tutorial.R  obj_pair.rds + rna_gene_detection.csv (27), archr_trajectories.csv (31); run twice:
-#                                  archr_dm (P2G FDR 1e-50: network, S8a) and archr_dm_paper (P2G FDR 1e-4: ED 3l insets)
+#                                  archr_dm (P2G FDR 1e-50: network, S8a) and archr_dm_paper (P2G FDR 1e-4: ED 3m insets)
 #   f1  make_factor1_pt_list.py    MCFA loadings (ext) -> the Factor-1 top-positive PT gene list read by 45, 47, 48
 #                                  (replaces the cis-regulatory chain c01-c07 for the two columns used)
 #   45  45 -> 46 -> 47 -> 48       egrn_tutorial/archr_dm (43), gene list (f1); 47 reads 45's edge table, 48 reads 47's

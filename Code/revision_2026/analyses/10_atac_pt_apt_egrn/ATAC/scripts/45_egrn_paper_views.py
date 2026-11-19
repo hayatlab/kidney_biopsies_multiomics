@@ -175,7 +175,7 @@ def main():
     ap.add_argument("--genes", default="", help="comma-separated override of the gene panels")
     ap.add_argument("--label-scale", type=float, default=1.0,
                     help="scale TF / target label font size in the two-module network (13 Nov 2026: 1.4 for the "
-                         "revised ED3l); != 1 writes egrn_archr_dm_two_modules_labels<scale>x.*")
+                         "revised ED3m); != 1 writes egrn_archr_dm_two_modules_labels<scale>x.*")
     args = ap.parse_args()
     np.random.seed(SEED)
 

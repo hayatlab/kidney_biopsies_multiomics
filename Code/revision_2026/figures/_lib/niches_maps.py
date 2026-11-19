@@ -1,5 +1,5 @@
 """Shared helpers for the niche-map and niche-heatmap entry scripts (Fig. 6a-c, Extended Data Fig. 4d-e and g-j,
-Supplementary Fig. 18a).
+Supplementary Fig. 19a).
 
 The shipped NicheCompass modules import each other by module name (replot_partA and regenerate_metadata_figures
 import `nichecompass_5regions_downstream as ds` and drive it through module globals such as ds.NICHE_KEY), so their

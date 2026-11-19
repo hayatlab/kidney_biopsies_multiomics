@@ -3,7 +3,7 @@
 ## Purpose
 Orders proximal-tubule (PT) and adaptive PT (aPT) nuclei of the snRNA-seq / snATAC-seq GLUE co-embedding along one
 PT→aPT pseudotime, pairs RNA and ATAC nuclei with scMEGA, fits an ArchR trajectory on the joint diffusion map, infers
-the enhancer gene-regulatory network (eGRN) along it and draws the network views of Extended Data Fig. 3j–m and
+the enhancer gene-regulatory network (eGRN) along it and draws the network views of Extended Data Fig. 3k–n and
 Supplementary Fig. 8. Everything here is the rerun of 26 Oct 2026 on the **glue_v3** co-embedding, from which the AKI
 controls (K95, K96, K98; filtered by cell-id prefix) and the snATAC cluster pt_C5 were removed.
 
@@ -79,10 +79,10 @@ Seurat 5.3.0, JASPAR2020, BSgenome.Hsapiens.UCSC.hg38, EnsDb.Hsapiens.v86. Human
 ## Outputs and the panels that use them
 | panel | entry script | output used |
 |---|---|---|
-| ED Fig. 3j–k | `figures/ED3/ED3j-k_archr_trajectory_egfr_density.py` | 34: `panel_a_b_archr_dm.pdf` (j = panel a, k = panel b′) |
-| ED Fig. 3l, network | `figures/ED3/ED3l_egrn_two_modules.py` | 45: `egrn_archr_dm_two_modules.pdf` |
-| ED Fig. 3l, JUN / HNF4A insets | `figures/ED3/ED3l_insets_scMEGA_TF_JUN_HNF4A.R` | 43 `_paper`: re-drawn from `pseudotime_curves.csv.gz` + `tf_centrality.csv` (the plotting code of 43, verbatim) |
-| ED Fig. 3m | `figures/ED3/ED3m_egrn_module_timing.py` | 46: `egrn_module_timing.pdf`, panels A–C (bottom panel printed from September, see caveats) |
+| ED Fig. 3k–l | `figures/ED3/ED3k-l_archr_trajectory_egfr_density.py` | 34: `panel_a_b_archr_dm.pdf` (k = panel a, l = panel b′) |
+| ED Fig. 3m, network | `figures/ED3/ED3m_egrn_two_modules.py` | 45: `egrn_archr_dm_two_modules.pdf` |
+| ED Fig. 3m, JUN / HNF4A insets | `figures/ED3/ED3m_insets_scMEGA_TF_JUN_HNF4A.R` | 43 `_paper`: re-drawn from `pseudotime_curves.csv.gz` + `tf_centrality.csv` (the plotting code of 43, verbatim) |
+| ED Fig. 3n | `figures/ED3/ED3n_egrn_module_timing.py` | 46: `egrn_module_timing.pdf`, panels A–C (bottom panel printed from September, see caveats) |
 | Supp. Fig. 8a | `figures/S8/S8a_tf_activity_expression_heatmap.R` | 43 `archr_dm`: `tf_heatmap_cor70.pdf`, re-drawn from the saved curves |
 | Supp. Fig. 8c | `figures/S8/S8c_egrn_factor1_tf_ranking.py` | 47: `egrn_factor1_tf_ranking.pdf` |
 | Supp. Fig. 8b | `figures/S8/S8b_egrn_factor1_targets_overview.py` | 45: `egrn_factor1_targets_overview.pdf` |
@@ -97,7 +97,7 @@ Release patches (output folders `OUT` / `TABLEDIR`, defaults = original folders)
   (17,637 pairs, 86 TFs, 3,686 edges, 388 targets, modules of 72 / 14 TFs, 46 Factor 1 targets). The rerun has 16,843 of
   18,715 pairs with an ArchR value (ArchR leaves the 10 % of pairs farthest from the curve without one), 80 TFs, 2,963
   edges, 337 targets, modules of 64 / 16 TFs (272 / 136 nodes) and 43 of the 80 Factor 1 genes as targets.
-- **ED 3m mixes two runs.** Its top (TF activity) and middle (TF expression) panels are the rerun; the printed bottom panel
+- **ED 3n mixes two runs.** Its top (TF activity) and middle (TF expression) panels are the rerun; the printed bottom panel
   (Target expression) is panel C of the September glue_v2 figure (`$KB_ANALYSIS/ATAC/scmega/figures_paper/egrn_module_timing.pdf`:
   module crossing at bin 60, transition window 58–72; rerun: bin 59, window 56–73). In the rerun the module II lead in
   chromatin is no longer significant (steepest change, permutation p = 0.079; September 0.005) while the lead in target
@@ -106,10 +106,10 @@ Release patches (output folders `OUT` / `TABLEDIR`, defaults = original folders)
 - **Insets and network use different link thresholds.** The JUN / HNF4A curves come from the peak-to-gene FDR < 1e-4 run
   (JUN 517 targets, HNF4A 843); the network beside them from FDR < 1e-50 (JUN 51, HNF4A 57). TF selection (81 TFs) and the
   TF activity / expression curves do not depend on that threshold (identical in both runs).
-- **ED 3l inset legend.** The legend added in Illustrator uses ggplot's default colours (red "Targets expression", green
+- **ED 3m inset legend.** The legend added in Illustrator uses ggplot's default colours (red "Targets expression", green
   "TF activity", blue "TF expression"), but the curves keep 43's colours (orange = TF activity, green = targets, blue = TF
   expression): TF activity and Targets expression are swapped in the printed legend.
-- **ED 3k misses K68 and counts samples as donors.** K68 (FSGS, eGFR 87 in the corrected metadata) has no disease or eGFR
+- **ED 3l misses K68 and counts samples as donors.** K68 (FSGS, eGFR 87 in the corrected metadata) has no disease or eGFR
   group in `sample_metadata_milo.csv`, so its 447 RNA nuclei of pairs are excluded. The "donors" of panels b / b′ are
   samples: K94 and K97 are two biopsies of one person and enter as two curves.
 - **Stale labels in 47.** Its figure legend and meta json say "BH-FDR < 0.05 over 86 TFs" and "population = 388 targets,

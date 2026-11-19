@@ -61,8 +61,8 @@ from the shipped `subcluster_sweep/subcluster_sweep.py` (identical literal).
 | `.../phate/pseudotime_heatmap_zbinmean_HVGs.pdf` | Fig. 6j right (`figures/Fig6/Fig6j_pseudotime_heatmap.py`) |
 | `de_results/9_vs_0_2_4_11/DE/volcano_top10bottom10_9_vs_0_2_4_11_pecfiltered.pdf` | Fig. 6k (`figures/Fig6/Fig6k_volcano_aPEC_vs_PEC.py`) |
 | `de_results/9_vs_0_2_4_11/GSEA_pecfiltered/Reactome/dotplot.pdf` | Fig. 6l (`figures/Fig6/Fig6l_gsea_reactome_dotplot.R`) |
-| `new_pec_annotation/res_0.8/umap_res0.8.pdf`, `markers_dotplot_res0.8.pdf` | Supp. Fig. 18c-d (`figures/S18/S18c-d_pec_subclusters_umap_markers.py`) |
-| `subcluster_level2_20260728/Immune/res_0.6/umap_res0.6.pdf`, `markers_dotplot_res0.6.pdf` | Supp. Fig. 18e-f (`figures/S18/S18e-f_immune_subclusters_umap_markers.py`) |
+| `new_pec_annotation/res_0.8/umap_res0.8.pdf`, `markers_dotplot_res0.8.pdf` | Supp. Fig. 19c-d (`figures/S19/S19c-d_pec_subclusters_umap_markers.py`) |
+| `subcluster_level2_20260728/Immune/res_0.6/umap_res0.6.pdf`, `markers_dotplot_res0.6.pdf` | Supp. Fig. 19e-f (`figures/S19/S19e-f_immune_subclusters_umap_markers.py`) |
 
 All entry scripts re-draw from the saved objects (layouts, labels, pseudotimes, Wilcoxon results, DE and GSEA tables);
 none recomputes Leiden, UMAP, PHATE, VIA, MAST or GSEA. Except for 6i and 6j (trends), every regenerated panel matched
@@ -90,8 +90,8 @@ id instead of its internal label (see `build/verification/niches.csv`).
   depth-confounded (workspace STATUS.md, 24 Jul 2026); rank by fold change, as Fig. 6k does. Fig. 6l is a GSEA (fgsea
   multilevel, genes ranked by avg_log2FC, BH), not an over-representation test; 27 of its 93 Reactome terms, including
   all ten plotted, sit at the fgsea P floor (1e-10), so the colour scale of the panel carries no information.
-- **Supp. Fig. 18e** is Leiden 0.6 (18 clusters); the caption says 0.8. Subcluster names of Fig. 6g (immune) and
-  Supp. Fig. 18e were added in Illustrator; in the immune palette (tab20) subcluster 15 (DC) is light grey, close to the
+- **Supp. Fig. 19e** is Leiden 0.6 (18 clusters); the caption says 0.8. Subcluster names of Fig. 6g (immune) and
+  Supp. Fig. 19e were added in Illustrator; in the immune palette (tab20) subcluster 15 (DC) is light grey, close to the
   grey of unmapped cells.
 - **Different Xenium cell sets in Fig. 6g.** The PEC transfer uses the current Xenium object (`xenium_labeled.h5ad`,
   `level2_refined == "PEC"`, five regions, Xenium-bundle polygons); the immune transfer uses the 2025 three-region

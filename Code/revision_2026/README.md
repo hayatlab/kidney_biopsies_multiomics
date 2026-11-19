@@ -5,8 +5,8 @@ and Xenium based high-resolution spatial mapping of human kidney diseases* (revi
 
 This folder holds the code behind the figure panels produced by Leon Frommer (Hayat lab): the Xenium cell typing,
 factor 1 on Xenium, spatial neighbourhoods and cell-cell interactions, NicheCompass niches, the glomerular niche 20 /
-crescent analysis, the snRNA-seq PEC and immune subclusters, the PT→aPT snATAC/scMEGA gene-regulatory network, and the
-snRNA-seq overview. [`FIGURE_PANELS.md`](FIGURE_PANELS.md) lists every panel of the paper, who made it, and the script
+crescent analysis, the snRNA-seq PEC and immune subclusters, the PT→aPT snATAC/scMEGA gene-regulatory network, the
+snRNA-seq overview, and the Xenium pseudobulk tables handed to the MCFA authors. [`FIGURE_PANELS.md`](FIGURE_PANELS.md) lists every panel of the paper, who made it, and the script
 that draws it. Panels made by other authors (MCFA, atlas construction, UK Biobank, wet lab, a colleague's Xenium
 notebooks) are listed there too, with a pointer to where their code lives.
 
@@ -14,8 +14,8 @@ notebooks) are listed there too, with a pointer to where their code lives.
 
 | folder | contents |
 |---|---|
-| `analyses/` | the analyses, in pipeline order (`01_` … `10_`). Each folder has a README: purpose, run order, conda environment, inputs, outputs, panels. Scripts keep the names they were run under (several import each other). |
-| `figures/<figure>/` | one entry point per published panel, named after it (`Fig3/Fig3c_…`, `ED4/ED4d-e_…`, `S18/S18c-d_…`). Each reads saved analysis outputs and writes the panel to `$KB_FIG_OUT/<figure>/`; its header names the inputs, the plotting code, edits made afterwards in Illustrator, and how it was verified. |
+| `analyses/` | the analyses, in pipeline order (`01_` … `11_`). Each folder has a README: purpose, run order, conda environment, inputs, outputs, panels. Scripts keep the names they were run under (several import each other). |
+| `figures/<figure>/` | one entry point per published panel, named after it (`Fig3/Fig3c_…`, `ED4/ED4d-e_…`, `S19/S19c-d_…`). Each reads saved analysis outputs and writes the panel to `$KB_FIG_OUT/<figure>/`; its header names the inputs, the plotting code, edits made afterwards in Illustrator, and how it was verified. |
 | `config/` | `env.sh` (source this first), `kbpaths.py` / `kbpaths.R` (every data location in one place), `cores.py` (Xenium core ids). |
 | `envs/` | conda environment exports and R package lists. |
 | `FIGURE_PANELS.md` / `.csv` | panel → maker → entry script. |
@@ -62,23 +62,23 @@ K-numbers.
 
 - Every entry script was re-run on the saved analysis outputs (12 Nov 2026). Of the 68 panel letters made with this code,
   46 came out pixel- or byte-identical to the files used in the published figures, 7 are identical except for the title,
-  and the 4 panels of Supplementary Fig. 9 are identical when drawn from the earlier object they were made from (below);
+  and the 4 panels of Supplementary Fig. 10 are identical when drawn from the earlier object they were made from (below);
   the `re-run check` column of `FIGURE_PANELS.md` gives the result and the reason for every other panel.
-- Map panels (Fig. 3f, 6b, 6g; Extended Data Fig. 4d–e; Supplementary Fig. 12) now print the public core id in their
+- Map panels (Fig. 3f, 6b, 6g; Extended Data Fig. 4d–e; Supplementary Fig. 13) now print the public core id in their
   title; everything below the title is identical.
 - Some originals used unseeded randomness that cannot be replayed exactly: label placement (ggrepel, Supplementary
-  Fig. 18b), jitter (Extended Data Fig. 2e–g), bootstrap confidence intervals (Supplementary Fig. 22h–i), and the VIA
+  Fig. 19b), jitter (Extended Data Fig. 2e–g), bootstrap confidence intervals (Supplementary Fig. 23h–i), and the VIA
   pseudotime of the PEC trajectory, whose fitted object was not saved (Fig. 6i and the gene trends of 6j are produced
   only by re-running the analysis step; their entry scripts say how).
 - Fonts: several plotting scripts register Liberation Sans from `/usr/share/fonts/liberation-sans/` and otherwise fall
   back to DejaVu Sans, which shifts text and therefore the exact layout (seen for Fig. 6f and 6k on machines without the
   font).
-- Supplementary Fig. 9 was drawn from the cell-type object before 182 aPT cells were re-assigned to PEC; its entry
+- Supplementary Fig. 10 was drawn from the cell-type object before 182 aPT cells were re-assigned to PEC; its entry
   script reproduces it with `--xenium <that earlier object>` and draws the final object by default.
 
 ## How this folder was built
 
-The scripts were copied from the analysis workspaces on 12 Nov 2026. Hard-coded paths were replaced by the variables
+The scripts were copied from the analysis workspaces on 12 Nov 2026 (`analyses/11_xenium_nuclear_pseudobulks` on 19 Nov 2026). Hard-coded paths were replaced by the variables
 above by an automatic rewrite whose equivalence was checked file by file (Python: identical syntax trees once the
 variables take their default values; R and shell: exact reversal of every substitution); deliberate edits (removal of
 identifiers, locating shipped instead of workspace copies) are listed per file in `MANIFEST.csv` (`patch_rules`). Every

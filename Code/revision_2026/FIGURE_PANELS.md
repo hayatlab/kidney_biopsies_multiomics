@@ -1,6 +1,6 @@
 # Figure panels and their code
 
-Every panel of the final figures (main, Extended Data, Supplementary; figure export of 16 Nov 2026). `made_by`: **this repository** = code here (entry script in `figures/`, analysis steps in `analyses/`); MCFA = [saezlab/kidney_biopsies_MCFA]; atlas = snRNA/snATAC atlas construction; colleague / UK Biobank = other authors' code (not in this folder; where public, the note names the folder under `Code/`); wet lab / image = no analysis code; not found = no code for this panel on the analysis server. `re-run check`: result of re-running the entry script on the saved analysis outputs (12 Nov 2026) and comparing it with the file used in the published figure.
+Every panel of the final figures (main, Extended Data, Supplementary; figure PDFs of 18 Nov 2026). `made_by`: **this repository** = code here (entry script in `figures/`, analysis steps in `analyses/`); MCFA = [saezlab/kidney_biopsies_MCFA]; atlas = snRNA/snATAC atlas construction; colleague / UK Biobank = other authors' code (not in this folder; where public, the note names the folder under `Code/`); wet lab / image = no analysis code; not found = no code for this panel on the analysis server. `re-run check`: result of re-running the entry script on the saved analysis outputs (12 Nov 2026) and comparing it with the file used in the published figure.
 
 
 ## Fig. 1
@@ -24,7 +24,7 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | c | MDS of samples by condition / baseline eGFR | MCFA |  |  |  |
 | d | factor x clinical and cell-type abundance associations | MCFA |  |  | 2d_plot_metadata_associations.R |
 | e | factor 1 vs baseline eGFR and aPT/PT ratio | MCFA |  |  |  |
-| f | motif enrichment in PT-open vs aPT-open peaks | not found |  |  | ArchR/GLUE collaborator |
+| f | motif enrichment in PT-open vs aPT-open peaks (all DA peaks) | not found |  |  | ArchR/GLUE collaborator; the heatmap shown as Extended Data Fig. 3f in the export of 16 Nov |
 | g | eGFR GWAS enrichment (gchromVAR) and disrupted TF motifs (motifbreakR) | colleague |  |  |  |
 | h | eGFR GWAS enrichment (gchromVAR) and disrupted TF motifs (motifbreakR) | colleague |  |  |  |
 
@@ -115,30 +115,28 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | b | MCFA model selection, variance explained, factor scores, robustness | MCFA |  |  |  |
 | c | MCFA model selection, variance explained, factor scores, robustness | MCFA |  |  |  |
 | d | MCFA model selection, variance explained, factor scores, robustness | MCFA |  |  |  |
-| e | CLR cell-type abundance by condition / eGFR / IF-TA | this repository | `figures/ED2/ED2e-g_clr_compositions_boxplot.R` | statistics identical; jittered points differ (original jitter unseeded) | plotting code adapted verbatim from the MCFA repository |
-| f | CLR cell-type abundance by condition / eGFR / IF-TA | this repository | `figures/ED2/ED2e-g_clr_compositions_boxplot.R` | as e | plotting code adapted verbatim from the MCFA repository |
-| g | CLR cell-type abundance by condition / eGFR / IF-TA | this repository | `figures/ED2/ED2e-g_clr_compositions_boxplot.R` | as e | plotting code adapted verbatim from the MCFA repository |
-| h | HNF4A/RELA footprints; ATAC tracks at RHEX and VCAM1 | atlas |  |  | ArchR; no code on this system |
-| i | HNF4A/RELA footprints; ATAC tracks at RHEX and VCAM1 | atlas |  |  | ArchR; no code on this system |
-| j | HNF4A/RELA footprints; ATAC tracks at RHEX and VCAM1 | atlas |  |  | ArchR; no code on this system |
+| e | CLR cell-type abundance by condition / eGFR / IF-TA | this repository | `figures/ED2/ED2e-g_clr_compositions_boxplot.R` | all 30 printed p-values, groups and group sizes of e-g reproduced (19 Nov 2026); no pixel comparison, the code that drew the printed panels is not on this system | plotting code adapted from the MCFA repository; the printed panels (18 Nov 2026) keep the control_AKI samples and use the eGFR group of Supplementary Data 1 |
+| f | CLR cell-type abundance by condition / eGFR / IF-TA | this repository | `figures/ED2/ED2e-g_clr_compositions_boxplot.R` | as e | plotting code adapted from the MCFA repository; the printed panels (18 Nov 2026) keep the control_AKI samples and use the eGFR group of Supplementary Data 1 |
+| g | CLR cell-type abundance by condition / eGFR / IF-TA | this repository | `figures/ED2/ED2e-g_clr_compositions_boxplot.R` | as e | plotting code adapted from the MCFA repository; the printed panels (18 Nov 2026) keep the control_AKI samples and use the eGFR group of Supplementary Data 1 |
 
 ## Extended Data Fig. 3
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| b | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| c | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| d | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| e | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| f | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| g | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| h | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| i | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon |
-| j | scMEGA PT->aPT trajectory (joint diffusion map, ArchR pseudotime) | this repository | `figures/ED3/ED3j-k_archr_trajectory_egfr_density.py` | pixel-identical to the published source file |  |
-| k | eGFR groups along the pseudotime | this repository | `figures/ED3/ED3j-k_archr_trajectory_egfr_density.py` | pixel-identical to the published source file |  |
-| l | eGRN modules I and II with JUN / HNF4A insets | this repository | `figures/ED3/ED3l_egrn_two_modules.py`<br>`figures/ED3/ED3l_insets_scMEGA_TF_JUN_HNF4A.R` | pixel-identical to the published source file (network and insets) |  |
-| m | TF activity, TF expression and target expression of the modules along pseudotime | this repository | `figures/ED3/ED3m_egrn_module_timing.py` | top and middle pixel-identical; the printed bottom panel comes from the September run, the script draws the AKI/pt_C5-excluded rerun |  |
+| a | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| b | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| c | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| d | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| e | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| f | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| g | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| h | PT/aPT embeddings, DE/DA volcanos, peak annotation, motif enrichment in promoter peaks, GSEA | not found |  |  | ArchR/GLUE collaborator — ask Leon; f-h were panels g-i in the export of 16 Nov (the all-peaks motif panel, old f, is no longer shown) |
+| i | ATAC tracks at RHEX and VCAM1 | atlas |  |  | ArchR; no code on this system; Extended Data Fig. 2i, j in the export of 16 Nov |
+| j | ATAC tracks at RHEX and VCAM1 | atlas |  |  | ArchR; no code on this system; Extended Data Fig. 2i, j in the export of 16 Nov |
+| k | scMEGA PT->aPT trajectory (joint diffusion map, ArchR pseudotime) | this repository | `figures/ED3/ED3k-l_archr_trajectory_egfr_density.py` | pixel-identical to the published source file | panel j in the export of 16 Nov |
+| l | eGFR groups along the pseudotime | this repository | `figures/ED3/ED3k-l_archr_trajectory_egfr_density.py` | pixel-identical to the published source file | panel k in the export of 16 Nov |
+| m | eGRN modules I and II with JUN / HNF4A insets | this repository | `figures/ED3/ED3m_egrn_two_modules.py`<br>`figures/ED3/ED3m_insets_scMEGA_TF_JUN_HNF4A.R` | pixel-identical to the published source file (network and insets) | panel l in the export of 16 Nov |
+| n | TF activity, TF expression and target expression of the modules along pseudotime | this repository | `figures/ED3/ED3n_egrn_module_timing.py` | top and middle pixel-identical; the printed bottom panel comes from the September run, the script draws the AKI/pt_C5-excluded rerun | panel m in the export of 16 Nov |
 
 ## Extended Data Fig. 4
 
@@ -245,10 +243,10 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | factor 1 with vs without ligand-receptor views (scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis) |
-| b | factor 1 with vs without ligand-receptor views (scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis) |
-| c | factor 1 with vs without ligand-receptor views (scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis) |
-| d | factor 1 with vs without ligand-receptor views (scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis) |
+| a | factor 1 with vs without the control samples (MCFA refit: scores vs eGFR, scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis); the export of 16 Nov showed the comparison with / without ligand-receptor views here |
+| b | factor 1 with vs without the control samples (MCFA refit: scores vs eGFR, scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis); the export of 16 Nov showed the comparison with / without ligand-receptor views here |
+| c | factor 1 with vs without the control samples (MCFA refit: scores vs eGFR, scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis); the export of 16 Nov showed the comparison with / without ligand-receptor views here |
+| d | factor 1 with vs without the control samples (MCFA refit: scores vs eGFR, scores, loadings, per-view r) | not found |  |  | new in the export of 16 Nov 2026; no code on this system (MCFA analysis); the export of 16 Nov showed the comparison with / without ligand-receptor views here |
 
 ## Supplementary Fig. 6
 
@@ -282,42 +280,51 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S9/S9a_heatmap_pred_vs_refined.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
-| b | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S9/S9b_umap_level2_refined.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
-| c | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S9/S9c-d_dotplot_bubble.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
-| d | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S9/S9c-d_dotplot_bubble.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
+| a | predicted motif disruption (motifbreakR) in PT- vs TAL-attributed eGFR candidate variants | colleague |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system; likely saezlab/kidney_biopsies_MCFA, branch genetics (commit 4600585, 5 Nov 2026), workflow/scripts/genetics/15_motif_pt_vs_tal.R |
+| b | kidney caQTL / eQTL enrichment in cell-type-specific peaks (adjusted odds ratios) | colleague |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system; likely saezlab/kidney_biopsies_MCFA, branch genetics (commit 4600585, 5 Nov 2026), workflow/scripts/genetics/11_caqtl_enrichment.R (b), 10_eqtl_enrichment.R (c) |
+| c | kidney caQTL / eQTL enrichment in cell-type-specific peaks (adjusted odds ratios) | colleague |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system; likely saezlab/kidney_biopsies_MCFA, branch genetics (commit 4600585, 5 Nov 2026), workflow/scripts/genetics/11_caqtl_enrichment.R (b), 10_eqtl_enrichment.R (c) |
+| d | CKD GWAS enrichment of fine-mapped variants per cell type (gchromVAR) | colleague |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system; likely saezlab/kidney_biopsies_MCFA, branch genetics (commit 4600585, 5 Nov 2026), workflow/scripts/genetics/16-18 (CKD loci, fine-mapping, enrichment) |
 
 ## Supplementary Fig. 10
+
+| panel | content | made by | entry script(s) | re-run check | note |
+|---|---|---|---|---|---|
+| a | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S10/S10a_heatmap_pred_vs_refined.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
+| b | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S10/S10b_umap_level2_refined.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
+| c | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S10/S10c-d_dotplot_bubble.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
+| d | Xenium label transfer concordance, UMAP, markers, cells per condition | this repository | `figures/S10/S10c-d_dotplot_bubble.py` | pixel-identical when run on the archived 1 Jul object (--xenium); the final object has 182 aPT cells moved to PEC |  |
+
+## Supplementary Fig. 11
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
 | a | Xenium QC per core | colleague |  |  | Xenium team notebook; see Code/Preprocessing_Xenium in this GitHub repository |
 | b | Xenium QC per core | colleague |  |  | Xenium team notebook; see Code/Preprocessing_Xenium in this GitHub repository |
 | c | Xenium QC per core | colleague |  |  | Xenium team notebook; see Code/Preprocessing_Xenium in this GitHub repository |
-| d | Xenium per-core QC vs biopsy age | this repository | `figures/S10/S10d_qc_metrics_vs_biopsy_age.py` | pixel-identical to the file on disk; the published version places control cores at 0-5 y (code: 24.8 y) |  |
-
-## Supplementary Fig. 11
-
-| panel | content | made by | entry script(s) | re-run check | note |
-|---|---|---|---|---|---|
-| a | Xenium Explorer images of factor 1 genes (no panel letters) | image |  |  |  |
+| d | Xenium per-core QC vs biopsy age | this repository | `figures/S11/S11d_qc_metrics_vs_biopsy_age.py` | pixel-identical to the file on disk; the published version places control cores at 0-5 y (code: 24.8 y) |  |
 
 ## Supplementary Fig. 12
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | per-core cell types, factor 1 score, niches | this repository | `figures/S12/S12a-b_core_maps.py` | identical except the title, which now shows the public core id |  |
-| b | per-core cell types, factor 1 score, niches | this repository | `figures/S12/S12a-b_core_maps.py` | identical except the title, which now shows the public core id |  |
+| a | Xenium Explorer images of factor 1 genes (no panel letters) | image |  |  |  |
 
 ## Supplementary Fig. 13
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | NELL1 per cell type and vs eGFR | this repository | `figures/S13/S13a_nell1_dotplot.py` | pixel-identical to the published source file |  |
-| b | NELL1 per cell type and vs eGFR | this repository | `figures/S13/S13b_nell1_vs_egfr_per_donor.py` | pixel-identical to the published source file |  |
-| c | NELL1 immunohistochemistry (Human Protein Atlas) | image |  |  |  |
+| a | per-core cell types, factor 1 score, niches | this repository | `figures/S13/S13a-b_core_maps.py` | identical except the title, which now shows the public core id |  |
+| b | per-core cell types, factor 1 score, niches | this repository | `figures/S13/S13a-b_core_maps.py` | identical except the title, which now shows the public core id |  |
 
 ## Supplementary Fig. 14
+
+| panel | content | made by | entry script(s) | re-run check | note |
+|---|---|---|---|---|---|
+| a | NELL1 per cell type and vs eGFR | this repository | `figures/S14/S14a_nell1_dotplot.py` | pixel-identical to the published source file |  |
+| b | NELL1 per cell type and vs eGFR | this repository | `figures/S14/S14b_nell1_vs_egfr_per_donor.py` | pixel-identical to the published source file |  |
+| c | NELL1 immunohistochemistry (Human Protein Atlas) | image |  |  |  |
+
+## Supplementary Fig. 15
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
@@ -326,7 +333,7 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | c | lentiviral NELL1 construct and sorting strategy (wet lab) | wet lab |  |  |  |
 | d | lentiviral NELL1 construct and sorting strategy (wet lab) | wet lab |  |  |  |
 
-## Supplementary Fig. 15
+## Supplementary Fig. 16
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
@@ -334,7 +341,7 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | b | uncropped immunoblots (wet lab) | wet lab |  |  |  |
 | c | uncropped immunoblots (wet lab) | wet lab |  |  |  |
 
-## Supplementary Fig. 16
+## Supplementary Fig. 17
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
@@ -344,7 +351,7 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | d | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository |
 | e | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository |
 
-## Supplementary Fig. 17
+## Supplementary Fig. 18
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
@@ -352,18 +359,18 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | b | Rela deletion in mouse kidneys, RNAscope (wet lab) | wet lab |  |  |  |
 | c | Rela deletion in mouse kidneys, RNAscope (wet lab) | wet lab |  |  |  |
 
-## Supplementary Fig. 18
+## Supplementary Fig. 19
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S18/S18a_hallmark_glom_niches.py` | pixel-identical to the published source file |  |
-| b | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S18/S18b_niche20_pec_volcano.R` | points, axes and text identical; gene-label placement differs (ggrepel unseeded) |  |
-| c | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S18/S18c-d_pec_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
-| d | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S18/S18c-d_pec_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
-| e | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S18/S18e-f_immune_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
-| f | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S18/S18e-f_immune_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
+| a | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S19/S19a_hallmark_glom_niches.py` | pixel-identical to the published source file |  |
+| b | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S19/S19b_niche20_pec_volcano.R` | points, axes and text identical; gene-label placement differs (ggrepel unseeded) |  |
+| c | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S19/S19c-d_pec_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
+| d | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S19/S19c-d_pec_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
+| e | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S19/S19e-f_immune_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
+| f | Hallmark per glomerular niche; niche-20 PEC DE; snRNA PEC / immune subclusters | this repository | `figures/S19/S19e-f_immune_subclusters_umap_markers.py` | pixel-identical to the published source file |  |
 
-## Supplementary Fig. 19
+## Supplementary Fig. 20
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
@@ -372,7 +379,7 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | c | APP770-overexpressing ciPECs (wet lab) | wet lab |  |  |  |
 | d | APP770-overexpressing ciPECs (wet lab) | wet lab |  |  |  |
 
-## Supplementary Fig. 20
+## Supplementary Fig. 21
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
@@ -381,33 +388,61 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure exp
 | c | flow cytometry of ciPECs and iPSC-derived immune cells (wet lab) | wet lab |  |  |  |
 | d | flow cytometry of ciPECs and iPSC-derived immune cells (wet lab) | wet lab |  |  |  |
 
-## Supplementary Fig. 21
-
-| panel | content | made by | entry script(s) | re-run check | note |
-|---|---|---|---|---|---|
-| a | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S21/S21a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
-| b | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S21/S21a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
-| c | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S21/S21a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
-| d | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S21/S21a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
-| e | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S21/S21a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
-| f | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S21/S21a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
-
 ## Supplementary Fig. 22
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
-| b | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
-| c | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
-| d | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
-| e | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
-| f | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
-| g | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
-| h | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | near-identical (unseeded bootstrap CI whiskers) |  |
-| i | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S22/S22a-i_niche20_validation_pseudotime.py` | near-identical (unseeded bootstrap CI whiskers) |  |
+| a | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S22/S22a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
+| b | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S22/S22a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
+| c | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S22/S22a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
+| d | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S22/S22a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
+| e | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S22/S22a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
+| f | niche-20 genes vs factor 1 loadings (Venn) | this repository | `figures/S22/S22a-f_venn_niche20_mofa_factor1.py` | pixel-identical to the published source file |  |
 
 ## Supplementary Fig. 23
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
+| a | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
+| b | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
+| c | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
+| d | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
+| e | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
+| f | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
+| g | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | pixel-identical to the published source file |  |
+| h | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | near-identical (unseeded bootstrap CI whiskers) |  |
+| i | niche-20 score along the crescent trajectory (Sultana et al.) | this repository | `figures/S23/S23a-i_niche20_validation_pseudotime.py` | near-identical (unseeded bootstrap CI whiskers) |  |
+
+## Supplementary Fig. 24
+
+| panel | content | made by | entry script(s) | re-run check | note |
+|---|---|---|---|---|---|
 | a | nuclei sorting gates (wet lab; no panel letters) | wet lab |  |  |  |
+
+## Supplementary Fig. 25
+
+| panel | content | made by | entry script(s) | re-run check | note |
+|---|---|---|---|---|---|
+| a | snATAC-seq PT clusters pt_C1-pt_C6: UMAPs, per-cluster QC, RNA / ATAC neighbour fractions, RNA marker enrichment | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (ArchR/GLUE collaborator) |
+| b | snATAC-seq PT clusters pt_C1-pt_C6: UMAPs, per-cluster QC, RNA / ATAC neighbour fractions, RNA marker enrichment | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (ArchR/GLUE collaborator) |
+| c | snATAC-seq PT clusters pt_C1-pt_C6: UMAPs, per-cluster QC, RNA / ATAC neighbour fractions, RNA marker enrichment | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (ArchR/GLUE collaborator) |
+| d | snATAC-seq PT clusters pt_C1-pt_C6: UMAPs, per-cluster QC, RNA / ATAC neighbour fractions, RNA marker enrichment | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (ArchR/GLUE collaborator) |
+| e | snATAC-seq PT clusters pt_C1-pt_C6: UMAPs, per-cluster QC, RNA / ATAC neighbour fractions, RNA marker enrichment | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (ArchR/GLUE collaborator) |
+| f | snATAC-seq PT clusters pt_C1-pt_C6: UMAPs, per-cluster QC, RNA / ATAC neighbour fractions, RNA marker enrichment | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (ArchR/GLUE collaborator) |
+
+## Supplementary Fig. 26
+
+| panel | content | made by | entry script(s) | re-run check | note |
+|---|---|---|---|---|---|
+| a | MCFA refitted per disease (with the control samples): factor similarity, matched factor scores and loadings vs full-model factor 1 | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (MCFA analysis) |
+| b | MCFA refitted per disease (with the control samples): factor similarity, matched factor scores and loadings vs full-model factor 1 | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (MCFA analysis) |
+| c | MCFA refitted per disease (with the control samples): factor similarity, matched factor scores and loadings vs full-model factor 1 | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (MCFA analysis) |
+| d | MCFA refitted per disease (with the control samples): factor similarity, matched factor scores and loadings vs full-model factor 1 | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system (MCFA analysis) |
+
+## Supplementary Fig. 27
+
+| panel | content | made by | entry script(s) | re-run check | note |
+|---|---|---|---|---|---|
+| a | factor 1 scores from Xenium nuclear pseudobulks vs snRNA-seq factor 1 score and eGFR; correlation between cell-type views | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system for the scores and panels (MCFA analysis); the nuclear-transcript pseudobulks they start from: `analyses/11_xenium_nuclear_pseudobulks/04_nuclear_pseudobulk.py` |
+| b | factor 1 scores from Xenium nuclear pseudobulks vs snRNA-seq factor 1 score and eGFR; correlation between cell-type views | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system for the scores and panels (MCFA analysis); the nuclear-transcript pseudobulks they start from: `analyses/11_xenium_nuclear_pseudobulks/04_nuclear_pseudobulk.py` |
+| c | factor 1 scores from Xenium nuclear pseudobulks vs snRNA-seq factor 1 score and eGFR; correlation between cell-type views | not found |  |  | new in the figure PDFs of 18 Nov 2026; no code on this system for the scores and panels (MCFA analysis); the nuclear-transcript pseudobulks they start from: `analyses/11_xenium_nuclear_pseudobulks/04_nuclear_pseudobulk.py` |

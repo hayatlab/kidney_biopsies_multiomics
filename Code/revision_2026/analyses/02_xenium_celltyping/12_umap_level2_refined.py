@@ -11,7 +11,7 @@ plt.rcParams.update({"figure.dpi": 150, "savefig.bbox": "tight", "font.size": 8}
 ORDER = ["PT", "aPT", "dPT", "TAL", "DCT", "CNT", "PC", "IC-A", "IC-B",
          "POD", "PEC", "EC", "FIB", "MES", "VSM-P", "Immune"]
 # Display names (13 Nov 2026): the co-authors renamed dPT to aPT2 in all figures. The object keeps "dPT"; set
-# DISPLAY = {"dPT": "aPT2"} (the Supp. Fig. 9b entry point does) to print the new name. Colours are assigned before
+# DISPLAY = {"dPT": "aPT2"} (the Supp. Fig. 10b entry point does) to print the new name. Colours are assigned before
 # the rename, so they do not change. Default {} = the 1 July 2026 figure.
 DISPLAY = {}
 

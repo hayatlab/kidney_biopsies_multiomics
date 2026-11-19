@@ -5,13 +5,13 @@ Projects the MCFA factors (the factor of interest is Factor 1) of the snRNA-seq 
 (decoupler ULM on per-view loadings), builds cell-boundary polygons, distance-bounded Voronoi graphs and the 2-hop
 neighbourhood composition of every cell (by cell type and by NicheCompass niche), runs a local CellPhoneDB v5 analysis
 inside each 2-hop neighbourhood, scores NF-kB activity (PROGENy) per cell, rebuilds a per-core eGFR table, and draws the
-Xenium panels of Fig. 3, Extended Data Fig. 4 and 6 and Supplementary Fig. 12. It is a re-implementation, on the final
+Xenium panels of Fig. 3, Extended Data Fig. 4 and 6 and Supplementary Fig. 13. It is a re-implementation, on the final
 5-run Xenium object (258,375 cells, 119 cores, 16 `level2_refined` cell types), of the original paper code
 (`Code/plot_egfr_f2_on_spatial`, `Code/nh_analysis`, `Code/spatial_cci`, `Code/cell_boundaries`), with Factor 1
 replacing Factor 2. Human GRCh38, HGNC symbols, seed 42.
 
 Function and file names still carry the panel letters of an earlier draft: `fig3d` = Fig. 3c, `fig3g` = Fig. 3f,
-`fig3h` = Fig. 3g, `fig3i` = Fig. 3h, `fig3j` = Fig. 3i, `ed3b` = ED 4c, `ed3f` = ED 4f, `suppl7` = Supp. Fig. 12.
+`fig3h` = Fig. 3g, `fig3i` = Fig. 3h, `fig3j` = Fig. 3i, `ed3b` = ED 4c, `ed3f` = ED 4f, `suppl7` = Supp. Fig. 13.
 
 ## Analysis workspace
 `$KB_ANALYSIS/vivien_takeover/` (scripts were in `scripts/`; SLURM logs in `logs/`). Outputs in `outputs/`
@@ -39,7 +39,7 @@ Function and file names still carry the panel letters of an earlier draft: `fig3
 Steps 1-12 need the final `xenium_labeled.h5ad` (folder 02, after step 17b). Steps m1-m2 build the corrected per-sample
 snRNA metadata that folders 04 and 05 read. Runs that drew the published panels (the `--panels` arguments are not
 logged; each log lists the panels it drew): `05_xenium_figures.sh` jobs 329333/329334 (2026-09-02; ED 4c), 329425
-(2026-09-07; Fig. 3c, 3g, ED 4f), 329429 (Fig. 3f) and 329443 (Supp. Fig. 12); `09_cci_postprocess.sh --reuse`
+(2026-09-07; Fig. 3c, 3g, ED 4f), 329429 (Fig. 3f) and 329443 (Supp. Fig. 13); `09_cci_postprocess.sh --reuse`
 (Fig. 3h; job 329451); `34b_cci_top_pairs.sh` (Fig. 3i; job 330299); `python 27_ed3f_nfkb.py` (ED 6a; job 329585).
 
 ## Inputs
@@ -68,10 +68,10 @@ logged; each log lists the panels it drew): `05_xenium_figures.sh` jobs 329333/3
 | `figures/xenium/ed3b_2hop_celltype_heatmap.pdf` (`05::ed3b`) | ED 4c (`figures/ED4/ED4c_2hop_celltype_heatmap.py`) |
 | `figures/xenium/ed3f_niche_vs_factor1.pdf` (`05::ribbon`) | ED 4f (`figures/ED4/ED4f_niche_composition_vs_factor1.py`) |
 | `figures/xenium/fig3h_celltype_vs_nfkb.pdf` (`27`, `05::ribbon`) | ED 6a (`figures/ED6/ED6a_celltype_composition_vs_nfkb.py`) |
-| `figures/xenium/suppl7_<core>.pdf` (`05::suppl7`) | Supp. Fig. 12a-b (`figures/S12/S12a-b_core_maps.py`) |
-| `outputs/xenium_factor_scores.parquet` | also folder 06 (Supp. Fig. 10d) |
-| `outputs/authoritative_core_egfr.csv` via `05::corrected_core_egfr` | also folder 05 (Supp. Fig. 13; Xenium part) |
-| `outputs/metadata/sample_metadata_corrected.csv` | folders 04 (Supp. Fig. 2, ED 2e-g) and 05 (Supp. Fig. 13b) |
+| `figures/xenium/suppl7_<core>.pdf` (`05::suppl7`) | Supp. Fig. 13a-b (`figures/S13/S13a-b_core_maps.py`) |
+| `outputs/xenium_factor_scores.parquet` | also folder 06 (Supp. Fig. 11d) |
+| `outputs/authoritative_core_egfr.csv` via `05::corrected_core_egfr` | also folder 05 (Supp. Fig. 14; Xenium part) |
+| `outputs/metadata/sample_metadata_corrected.csv` | folders 04 (Supp. Fig. 2, ED 2e-g) and 05 (Supp. Fig. 14b) |
 | `outputs/geodataframes/`, `outputs/neighborhoods/`, `outputs/local_cci_results/` | inputs of steps 4-12 |
 
 ## Caveats (read before reusing)
@@ -92,7 +92,7 @@ logged; each log lists the panels it drew): `05_xenium_figures.sh` jobs 329333/3
   19-cell composition). `fig3g` draws the neighbourhood edges in set order, which follows Python's string-hash seed,
   so the anti-aliasing where edges cross changes from run to run (~0.005% of pixels; set `PYTHONHASHSEED` to fix it).
   All other panels of this folder are redrawn pixel-identically by their entry scripts (core names in the titles of
-  Fig. 3f and Supp. Fig. 12 aside).
+  Fig. 3f and Supp. Fig. 13 aside).
 - **Core names.** Internal core labels (`TMA_ID`) contain pathology numbers; the code selects cores through
   `config/cores.py::core_label("XEN###")`. Two defaults still name cores by their internal label and therefore do not
   resolve on the de-identified object: the control core of `05::SUPPL7_CORES` ("Appollo d0 B5 CTRL" = XEN008) and
@@ -104,4 +104,4 @@ logged; each log lists the panels it drew): `05_xenium_figures.sh` jobs 329333/3
 - **Fig. 3i / 29:** `29_fig3j_app_cd74.py` (earlier violin version with dPT) is superseded by `34_cci_panel.py` and is not
   shipped. Fig. 3i tests aPT vs PT as senders with a paired Wilcoxon over the 116 cores with both senders (median
   paired difference 0.655, bootstrap 95% CI 0.131-1.016, p = 0.0022).
-- Supp. Fig. 12b "high eGFR" is 60 ml/min/1.73 m2 (control core XEN008); ED 4d's "FSGS high eGFR" core (K82) has 63.
+- Supp. Fig. 13b "high eGFR" is 60 ml/min/1.73 m2 (control core XEN008); ED 4d's "FSGS high eGFR" core (K82) has 63.

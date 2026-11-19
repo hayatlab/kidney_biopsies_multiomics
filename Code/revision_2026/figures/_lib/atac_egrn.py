@@ -1,4 +1,4 @@
-"""Helpers shared by the entry scripts of the PT -> aPT snATAC / scMEGA eGRN panels (ED Fig. 3j-m, Supp. Fig. 8a-d).
+"""Helpers shared by the entry scripts of the PT -> aPT snATAC / scMEGA eGRN panels (ED Fig. 3k-n, Supp. Fig. 8a-d).
 
 - SCRIPTS: analyses/10_atac_pt_apt_egrn/ATAC/scripts (the shipped analysis code; file names start with a digit, so they
   are loaded by path)
