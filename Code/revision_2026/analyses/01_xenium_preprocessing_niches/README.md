@@ -85,7 +85,7 @@ obs) are helper modules for the level2 scripts.
 | ED Fig. 4h | `figures/ED4/ED4h_egfr_group_enrichment.py` | `regenerate_metadata_figures.py` -> `run_categorical_enrichment` (step 12) |
 | ED Fig. 4i | `figures/ED4/ED4i_condition_stacked_bars.py` | `regenerate_metadata_figures.py` -> `plot_stacked_proportions` (step 12) |
 | ED Fig. 4j | `figures/ED4/ED4j_hallmark_niches.py` | `regenerate_hallmark_dedup.py` -> `glom_postprocess.hallmark_pathway_dotplot` (step 12) |
-| Supp. Fig. 18a | `figures/S18/S18a_hallmark_glom_niches.py` | same, config `manual_glom10` (step 12) |
+| Supp. Fig. 19a | `figures/S19/S19a_hallmark_glom_niches.py` | same, config `manual_glom10` (step 12) |
 
 The figure scripts read only the saved objects and tables above. They never retrain or re-cluster. Changes made
 for the release (all backwards compatible, defaults = original behaviour) are listed in
@@ -124,4 +124,4 @@ id instead of the internal core label.
 - **Staging.** The Kramann_lab quota was full in July 2026. The regeneration scripts therefore wrote to
   `$KB_ANALYSIS/figures_regen_20260722/` and `sync_staged_figures.py` copied the files with integrity checks.
 - **Labels edited only in Illustrator:** `dPT` was renamed `aPT2`. The ED Fig. 4j colour bar reads "Z-scaled"
-  but the values are min-max scaled. In Supp. Fig. 18a, niche 16 is labelled "10".
+  but the values are min-max scaled. In Supp. Fig. 19a, niche 16 is labelled "10".

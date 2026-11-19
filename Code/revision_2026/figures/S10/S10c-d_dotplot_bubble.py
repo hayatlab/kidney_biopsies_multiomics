@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-"""Supp. Fig. 9c-d — c, dot plot of the top-3 marker genes per Xenium cell type (level2_refined; scanpy Wilcoxon
+"""Supp. Fig. 10c-d — c, dot plot of the top-3 marker genes per Xenium cell type (level2_refined; scanpy Wilcoxon
 ranking on log1p(CP10k) of the raw counts; dot size = fraction of cells expressing; colour = log fold change, scaled
 per gene); d, number of Xenium cells per cell type and condition (bubble area ~ n cells) with per-type and
 per-condition totals.
-Panel        : All Supp Figures.pdf, Supplementary Fig. 9, panels c and d
+Panel        : All Supp Figures.pdf, Supplementary Fig. 10, panels c and d
 Reads        : $KB_ANALYSIS/celltype_concordance/outputs/xenium_labeled.h5ad, layers["counts"] + obs (level2_refined,
                  condition) (analyses/02_xenium_celltyping/)
-Writes       : $KB_FIG_OUT/S9/S9c_dotplot_top3_markers_level2_refined.pdf, $KB_FIG_OUT/S9/S9d_bubble_level2_by_condition.pdf
+Writes       : $KB_FIG_OUT/S10/S10c_dotplot_top3_markers_level2_refined.pdf, $KB_FIG_OUT/S10/S10d_bubble_level2_by_condition.pdf
                (+ .png)
 Plotting code: analyses/02_xenium_celltyping/13_dotplot_bubble.py::main (imported unchanged; its output folder
                config.FIG is redirected and the files renamed). The marker ranking (sc.tl.rank_genes_groups,
@@ -35,21 +35,21 @@ m13 = load_script("02_xenium_celltyping/13_dotplot_bubble.py", on_path=True)
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Supp. Fig. 9c-d")
+    ap = argparse.ArgumentParser(description="Supp. Fig. 10c-d")
     ap.add_argument("--xenium", default=None, help="read this object instead of outputs/xenium_labeled.h5ad")
     ap.add_argument("--tag", default="", help="suffix for the output file names")
     args = ap.parse_args()
     C = m13.C
-    outdir = Path(fig_out("S9", "S9c_dotplot_top3_markers_level2_refined.pdf")).parent
+    outdir = Path(fig_out("S10", "S10c_dotplot_top3_markers_level2_refined.pdf")).parent
     C.FIG = outdir
     if args.xenium:
         C.XENIUM_LABELED = Path(args.xenium)
-    print(f"[S9c-d] object: {C.XENIUM_LABELED}", flush=True)
+    print(f"[S10c-d] object: {C.XENIUM_LABELED}", flush=True)
     m13.main()
     t = args.tag
-    names = {"dotplot_top3_markers_level2_refined": "S9c", "bubble_level2_by_condition": "S9d"}
+    names = {"dotplot_top3_markers_level2_refined": "S10c", "bubble_level2_by_condition": "S10d"}
     for f in rename(outdir, {f"{s}.{e}": f"{p}_{s}{t}.{e}" for s, p in names.items() for e in ("pdf", "png")}):
-        print(f"[S9c-d] wrote {f}", flush=True)
+        print(f"[S10c-d] wrote {f}", flush=True)
 
 
 if __name__ == "__main__":

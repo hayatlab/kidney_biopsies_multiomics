@@ -5,7 +5,7 @@ Annotates the 258,375 Xenium cells (5 runs, 119 cores, 468-gene panel) with the 
 writes the object every other Xenium analysis reads, `outputs/xenium_labeled.h5ad`: scVI/scANVI label transfer from the
 snRNA-seq reference (scArches query surgery), a Leiden sweep, per-lineage subclustering with a consensus of the
 transferred labels (`level2_refined`, all 16 types), per-core clinical metadata, recovery of glomerular PECs that the
-transfer had called aPT, and completion of the manual-glomerulus flag `in_glom`. Also draws Supplementary Fig. 9a-d and
+transfer had called aPT, and completion of the manual-glomerulus flag `in_glom`. Also draws Supplementary Fig. 10a-d and
 adds clinical metadata to the snRNA-seq reference. Human GRCh38, HGNC symbols, seed 42. Methods text:
 `$KB_ANALYSIS/celltype_concordance/METHODS_celltyping.md`.
 
@@ -21,7 +21,7 @@ adds clinical metadata to the snRNA-seq reference. Human GRCh38, HGNC symbols, s
 | 2 | `02_train_transfer.py` | `02_train_transfer.sh` (32 CPUs, 200 GB, no GPU) | scVI base + scANVI level1/level2 + query surgery -> `outputs/xenium_labeled.h5ad` with `pred_level1/2`, `conf_level1/2`; models in `outputs/models/` |
 | 3 | `03_leiden_sweep.py` | `03_leiden_sweep.sh` | neighbours on `X_pca_harmony`, Leiden 0.2-2.0 -> `leiden_harmony_*` (in place) |
 | 4 | `09_level2_subcluster.py` | none | per-lineage re-embedding + Leiden, consensus `pred_level2` per subcluster, hierarchical aPT/dPT step -> `level2_refined`, `subcluster_level2` (in place); `metrics/level2_subcluster_assignments.csv`, `level2_refined_distribution.csv` |
-| 5 | `10_heatmap_pred_vs_refined.py`, `12_umap_level2_refined.py`, `13_dotplot_bubble.py` | none | Supp. Fig. 9a, 9b, 9c-d (drawn 2026-07-01, i.e. before steps 6-9) |
+| 5 | `10_heatmap_pred_vs_refined.py`, `12_umap_level2_refined.py`, `13_dotplot_bubble.py` | none | Supp. Fig. 10a, 10b, 10c-d (drawn 2026-07-01, i.e. before steps 6-9) |
 | 6 | `15_update_metadata_slope.py` | none | per-core clinical table -> `outputs/per_sample_metadata_updated.csv` (re-run 2026-07-22 with a join fix; the earlier table is kept as `per_sample_metadata_updated.PRE_JOINFIX_20260722.csv`) |
 | 7 | `16_apply_metadata_to_h5ad.py` | none (back up the object first) | writes the per-core table into the object's obs (`supp_*`, `EGFR`, `egfr_group`, ...; in place, gzip). Imports `metadata_common.py` and `nichecompass_5regions_downstream.py` from `analyses/01_xenium_preprocessing_niches/` |
 | 8 | `17_recover_pec_from_apt.py` | none (back up the object first) | re-embeds the aPT/dPT/PEC compartment, relabels 182 aPT cells PEC (subcluster with in_glom >= 0.25, CFH >= 2.0, prior PEC >= 0.5) -> `level2_refined`, `subcluster_level2` (in place); `metrics/pec_recovery_subcluster_decision.csv` |
@@ -29,7 +29,7 @@ adds clinical metadata to the snRNA-seq reference. Human GRCh38, HGNC symbols, s
 | 10 | `18_add_clinical_to_snRNA_ref.py` | none | donor-level clinical fields onto the snRNA reference -> `$KB_DATA/charlotte_new_data/adata_20260717_with_clinical.h5ad` (+ per-donor CSV, note) |
 
 Backups kept in `outputs/`: `xenium_labeled.PRE_METADATA_UPDATE_20260702.h5ad` (the object after step 4, 2026-07-01, as
-used for Supp. Fig. 9) and `xenium_labeled.PRE_PEC_RECOVERY_20260709.h5ad` (after step 7). Steps 6-9 were run on
+used for Supp. Fig. 10) and `xenium_labeled.PRE_PEC_RECOVERY_20260709.h5ad` (after step 7). Steps 6-9 were run on
 2026-07-02 (6-7) and 2026-07-09 (8-9); the final object is dated 2026-07-09 15:58. Not shipped: steps 04-08, 11, 14 and 19
 of the workspace (concordance metrics, report, label exports, a later lookup), which no panel uses.
 
@@ -53,17 +53,17 @@ copy only in `in_glom` (4,463 cells), `level2_refined` and `subcluster_level2` (
 ## Outputs and the panels that use them
 | output | used by |
 |---|---|
-| `outputs/xenium_labeled.h5ad` (final) | folders 03 (Fig. 3c, 3f-i; ED 4c, 4f; ED 6a; Supp. Fig. 12), 05 (Supp. Fig. 13, Xenium column), 06 (Supp. Fig. 10d), 01 (`bake_level2_into_niche_objects.py`) and 09 |
-| `figures/heatmap_pred_level2_vs_refined.pdf` (step 5, `10`) | Supp. Fig. 9a (`figures/S9/S9a_heatmap_pred_vs_refined.py`) |
-| `figures/umap_level2_refined_ondata.pdf` (`12`) | Supp. Fig. 9b (`figures/S9/S9b_umap_level2_refined.py`) |
-| `figures/dotplot_top3_markers_level2_refined.pdf`, `bubble_level2_by_condition.pdf` (`13`) | Supp. Fig. 9c-d (`figures/S9/S9c-d_dotplot_bubble.py`) |
+| `outputs/xenium_labeled.h5ad` (final) | folders 03 (Fig. 3c, 3f-i; ED 4c, 4f; ED 6a; Supp. Fig. 13), 05 (Supp. Fig. 14, Xenium column), 06 (Supp. Fig. 11d), 01 (`bake_level2_into_niche_objects.py`) and 09 |
+| `figures/heatmap_pred_level2_vs_refined.pdf` (step 5, `10`) | Supp. Fig. 10a (`figures/S10/S10a_heatmap_pred_vs_refined.py`) |
+| `figures/umap_level2_refined_ondata.pdf` (`12`) | Supp. Fig. 10b (`figures/S10/S10b_umap_level2_refined.py`) |
+| `figures/dotplot_top3_markers_level2_refined.pdf`, `bubble_level2_by_condition.pdf` (`13`) | Supp. Fig. 10c-d (`figures/S10/S10c-d_dotplot_bubble.py`) |
 | `outputs/per_sample_metadata_updated.csv` | folder 06 (step 01), folder 01 (`nichecompass_replot_level2/metadata_common.py`) |
 | `adata_20260717_with_clinical.h5ad` (step 10) | folders 03 (steps 1, m1), 04 and 05 |
 
 ## Caveats (read before reusing)
-- **Supp. Fig. 9a-d show the labels before the PEC recovery.** They were drawn on 2026-07-01 (aPT 15,072, PEC 2,395);
+- **Supp. Fig. 10a-d show the labels before the PEC recovery.** They were drawn on 2026-07-01 (aPT 15,072, PEC 2,395);
   step 8 later moved 182 cells from aPT to PEC (14,890 / 2,577), which every other panel uses. Run on the final object
-  the S9 entry scripts differ from the published panels (heatmap: the transferred-aPT row moves 0.0095 and the
+  the S10 entry scripts differ from the published panels (heatmap: the transferred-aPT row moves 0.0095 and the
   transferred-PEC row 0.018 from aPT to PEC; bubble plot: aPT and PEC counts); with
   `--xenium outputs/xenium_labeled.PRE_METADATA_UPDATE_20260702.h5ad` they redraw the published panels pixel for pixel.
 - **Order of steps 8 and 9.** Step 8 used `in_glom` (one of its three criteria) before step 9 completed it, i.e. with all
@@ -75,8 +75,8 @@ copy only in `in_glom` (4,463 cells), `level2_refined` and `subcluster_level2` (
   2026-07-22 (join fix) and step 7 was not re-run, so the object's `supp_*` columns can differ from
   `per_sample_metadata_updated.csv`. The object's `EGFR` column is corrupted (group values broadcast across donors);
   the Xenium figures use the per-core eGFR of `analyses/03_.../10_build_authoritative_egfr.py` instead.
-- `dPT` (Supp. Fig. 9b, file names, code) is labelled `aPT2` in most published panels (Illustrator edit).
-- Supp. Fig. 9b is the UMAP stored in the object (`X_umap`, NicheCompass latent space), not a UMAP of the scVI latent.
-- Supp. Fig. 9c colour is the log fold change of the scanpy Wilcoxon ranking, scaled per gene, not scaled mean expression.
+- `dPT` (Supp. Fig. 10b, file names, code) is labelled `aPT2` in most published panels (Illustrator edit).
+- Supp. Fig. 10b is the UMAP stored in the object (`X_umap`, NicheCompass latent space), not a UMAP of the scVI latent.
+- Supp. Fig. 10c colour is the log fold change of the scanpy Wilcoxon ranking, scaled per gene, not scaled mean expression.
 - Step 2 ran on CPU (no GPU) with `scvi.settings.seed = 42`; whether a re-run reproduces the models bit for bit on
   other hardware or thread counts was not tested.

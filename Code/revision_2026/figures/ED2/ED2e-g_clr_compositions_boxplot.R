@@ -1,22 +1,31 @@
 #!/usr/bin/env Rscript
 # Extended Data Fig. 2e-g — CLR-transformed abundance of aPT, PT and immune cells (snRNA-seq level-2 annotation, one
-# point per sample) by condition (e; reference = control), eGFR at biopsy (f) and IF/TA (g); boxplots with Welch
-# t-test brackets (ggpubr::stat_compare_means, unadjusted p).
+# point per sample, all 63 samples) by condition (e; reference = Control; the two control_AKI samples are their own group
+# without a test), eGFR group at biopsy (f; control_AKI samples included) and IF/TA (g; 53 samples with a value);
+# boxplots with Welch t-test brackets (ggpubr::stat_compare_means, unadjusted p).
 # Panel        : Extended Data Figures.pdf, Extended Data Figure 2, panels e, f and g
 # Reads        : $KB_ANALYSIS/Charlotte_help/outputs/clr~level2~new_annotation.csv and
 #                  $KB_ANALYSIS/Charlotte_help/outputs/patient_metadata_new_annotation.csv (columns sample_ID, disease,
 #                  classification, egfr_at_time_of_biopsy, IFTA, proteinuria_around_biopsy; no patient identifiers)
 #                  (analyses/04_snrna_overview_composition/01_build_clr_inputs.R, which reads the per-sample tables of
-#                  03_overview_figures_v2.py and the corrected sample metadata)
+#                  03_overview_figures_v2.py and the corrected sample metadata) and
+#                  $KB_SUPP_DATA1 (default $KB_ANALYSIS/Supplementary Data 1.csv; Supplementary Data 1 of the paper,
+#                  ';'-separated): columns sample_id, disease, egfr_at_biopsy, egfr_group, IFTA_pct. The eGFR group of
+#                  panel f is its column egfr_group
 # Writes       : $KB_FIG_OUT/ED2/ED2e-g_clr_compositions_boxplot/ext2e_clr_compositions_boxplot_level2.{pdf,png} and
 #                ext2e_stats_level2.csv (the numbers behind the brackets: n, mean difference with 95% CI, Welch t, p, BH)
 # Plotting code: analyses/04_snrna_overview_composition/02_ext2e_clr_compositions_boxplot.R (Leon's adaptation of the
-#                saezlab MCFA script ext2e_clr_compositions_boxplot.R), sourced unchanged with LEVEL = level2;
+#                saezlab MCFA script ext2e_clr_compositions_boxplot.R; "CHANGED 6" of 19 Nov 2026 = the final panels),
+#                sourced unchanged with LEVEL = level2;
 #                EXT2E_FIGDIR / EXT2E_TABLEDIR (release patch, default = the original folders) point to $KB_FIG_OUT
-# Illustrator  : facet strip boxes removed, "1.73m2" set as "1.73m²", panel letters e / f / g placed on the three
-#                patchwork panels
+# Illustrator  : facet strip boxes removed, "1.73m2" set as "1.73m²", ">=" set as "≥", panel letters e / f / g placed on
+#                the three patchwork panels
 # Environment  : conda env scmega2 (R 4.3.3; ggplot2, ggpubr, patchwork, dplyr, tidyr)
-# Verified     : 2026-11-12, DIFFERENT (1.2% of pixels, all of them jittered points; text layer equal, statistics
+# Verified     : 2026-11-19 against the panels printed in the figure PDFs of 18 Nov 2026: all 30 printed p-values equal
+#                the script's (e 15, f 9, g 6), same groups, group sizes and box order. The code that drew the printed
+#                panels is not on this system, so no pixel comparison was possible. EXT2E_VERSION=20260925 gives the
+#                samples and statistics of the earlier run (61 samples, eGFR of the corrected sample metadata).
+#                Earlier check of that run: 2026-11-12, DIFFERENT (1.2% of pixels, all of them jittered points; text layer equal, statistics
 #                table byte-identical) vs $KB_ANALYSIS/Charlotte_help/figures/ext2e_clr_compositions_boxplot_level2.pdf
 #                (2026-09-25). geom_jitter was unseeded in the original run, so the horizontal positions of the points
 #                cannot be reproduced; this entry script seeds the jitter (42) so that its own output is reproducible
