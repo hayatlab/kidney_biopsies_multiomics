@@ -19,3 +19,7 @@ Saritas T1,2*, Boys C3*, Kuppe C1*, Frommer L1, Maryam S1, Goepp V1, SA Gómez-O
 The first-submission NicheCompass and PEC trajectory code (`Code/Niche_analysis/`, `Code/Trajectory/`) was replaced by
 `Code/revision_2026/analyses/01_xenium_preprocessing_niches/` and
 `Code/revision_2026/analyses/09_snrna_pec_immune_subclusters/`.
+
+## License
+
+This project is distributed under the GNU General Public License v3.0. See [`LICENSE`](LICENSE) for full details.
