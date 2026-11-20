@@ -1,6 +1,6 @@
 # Figure panels and their code
 
-Every panel of the final figures (main, Extended Data, Supplementary; figure PDFs of 18 Nov 2026). `made_by`: **this repository** = code here (entry script in `figures/`, analysis steps in `analyses/`); MCFA = [saezlab/kidney_biopsies_MCFA]; atlas = snRNA/snATAC atlas construction; colleague / UK Biobank = other authors' code (not in this folder; where public, the note names the folder under `Code/`); wet lab / image = no analysis code; not found = no code for this panel on the analysis server. `re-run check`: result of re-running the entry script on the saved analysis outputs (12 Nov 2026) and comparing it with the file used in the published figure.
+Every panel of the final figures (main, Extended Data, Supplementary; figure PDFs of 18 Nov 2026). `made_by`: **this repository** = code here (entry script in `figures/`, analysis steps in `analyses/`); MCFA = [saezlab/kidney_biopsies_MCFA]; atlas = snRNA/snATAC atlas construction; colleague / UK Biobank = other authors' code (not in this folder; where public, the note names the folder under `Code/`); wet lab / image = no analysis code; not found = no code for this panel on the analysis server. `re-run check`: result of re-running the entry script on the saved analysis outputs (12 Nov 2026; 20 Nov 2026 where stated) and comparing it with the file used in the published figure.
 
 
 ## Fig. 1
@@ -36,7 +36,7 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure PDF
 | b | Xenium design schematic | image |  |  |  |
 | c | mean factor 1 score (ULM) per core vs eGFR | this repository | `figures/Fig3/Fig3c_factor1_per_core_vs_egfr.py` | pixel-identical to the published source file |  |
 | d | Xenium transcripts + PhenoCycler protein images | image |  |  |  |
-| e | RNF152 / NFKBIZ in PT vs aPT per core | colleague |  |  | Xenium team notebook |
+| e | RNF152 / NFKBIZ in PT vs aPT per core | this repository | `figures/Fig3/Fig3e_rnf152_nfkbiz_pt_vs_apt.py` | values reproduced: the 24 condition means agree with the print within 0.004, both P values reproduced; no pixel comparison, the published plot was not saved as a file (20 Nov 2026) | analysis by Sidrah Maryam; `analyses/13_xenium_pt_apt_gene_expression` |
 | f | distance-bounded Voronoi graph and one 2-hop neighbourhood (core K16) | this repository | `figures/Fig3/Fig3f_voronoi_2hop_neighbourhood.py` | identical except the title, which now shows the public core id (plus anti-aliasing specks) |  |
 | g | cell-type composition of 2-hop neighbourhoods vs factor 1 | this repository | `figures/Fig3/Fig3g_celltype_composition_vs_factor1.py` | pixel-identical to the published source file |  |
 | h | cell-cell interactions aPT -> immune vs factor 1 | this repository | `figures/Fig3/Fig3h_cci_apt_to_immune_vs_factor1.py` | pixel-identical to the published source file |  |
@@ -59,21 +59,21 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure PDF
 | a | Hallmark / PROGENy / CollecTRI on factor loadings | MCFA |  |  |  |
 | b | Hallmark / PROGENy / CollecTRI on factor loadings | MCFA |  |  |  |
 | c | Hallmark / PROGENy / CollecTRI on factor loadings | MCFA |  |  |  |
-| d | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| e | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| f | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| g | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| h | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| i | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| j | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| k | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| l | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| m | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| n | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| o | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| p | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| q | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
-| r | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository |
+| d | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| e | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| f | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| g | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| h | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| i | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| j | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| k | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| l | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| m | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| n | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| o | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| p | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| q | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| r | RelA KO cells, bulk RNA-seq, organoids, mice | wet lab |  |  | RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
 
 ## Fig. 6
 
@@ -82,8 +82,8 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure PDF
 | a | cell-type composition of the glomerular niches | this repository | `figures/Fig6/Fig6a_niche_vs_celltype_heatmap.py` | pixel-identical to the published source file |  |
 | b | glomerular niche maps of K50 (crescent) and K18 | this repository | `figures/Fig6/Fig6b_niche_maps_K50_K18.py` | identical except the title, which now shows the public core id | H&E and protein images are microscopy |
 | c | Xenium marker genes in glomerular niche 20 | this repository | `figures/Fig6/Fig6c_niche20_marker_dotplot.py` | byte-identical |  |
-| d | CCI in glomerular niche 20; PEC as sender | colleague |  |  | LIANA + CrossTalkeR; see Code/CCI_Niches in this GitHub repository |
-| e | CCI in glomerular niche 20; PEC as sender | colleague |  |  | LIANA + CrossTalkeR; see Code/CCI_Niches in this GitHub repository |
+| d | cell-cell interaction network of glomerular niche 20 (LIANA + CrossTalkeR) | this repository | `figures/Fig6/Fig6d_cci_network_niche20.R` | edge table reproduced (36 edges, maximum weight 484.29, widths 0.1-1.1); plot not re-drawn: CrossTalkeR not installed (20 Nov 2026) | analysis by Sidrah Maryam; `analyses/12_xenium_niche_cci_liana_crosstalker` (an earlier version of the script is in Code/CCI_Niches) |
+| e | ligand-receptor pairs with PEC as sender in glomerular niche 20 | this repository | `figures/Fig6/Fig6e_pec_sender_top_lr_dotplot.py` | re-drawn: the 4 pairs and 16 dots of the print, same colour range; no pixel comparison (20 Nov 2026) | analysis by Sidrah Maryam; `analyses/12_xenium_niche_cci_liana_crosstalker` |
 | f | PEC marker genes, niche 20 vs other niches | this repository | `figures/Fig6/Fig6f_pec_niche20_vs_other_dotplot.py` | pixel-identical to the published source file |  |
 | g | snRNA-seq PEC and immune subclusters mapped onto Xenium (K50, K18) | this repository | `figures/Fig6/Fig6g_immune_subclusters_xenium.py`<br>`figures/Fig6/Fig6g_pec_subclusters_xenium.py` | identical except the title, which now shows the public core id |  |
 | h | PHATE of the PEC subclusters and crescent score | this repository | `figures/Fig6/Fig6h_pec_phate_clusters_crescent.py` | pixel-identical to the published source file |  |
@@ -152,7 +152,7 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure PDF
 | h | niche enrichment by eGFR group | this repository | `figures/ED4/ED4h_egfr_group_enrichment.py` | pixel-identical to the published source file |  |
 | i | condition composition of the niches | this repository | `figures/ED4/ED4i_condition_stacked_bars.py` | pixel-identical to the published source file |  |
 | j | Hallmark pathway scores per niche | this repository | `figures/ED4/ED4j_hallmark_niches.py` | pixel-identical to the published source file |  |
-| k | top ligands in niche 1 with aPT as sender | colleague |  |  | LIANA + CrossTalkeR; see Code/CCI_Niches in this GitHub repository |
+| k | alluvial plot of ligand-receptor interactions with aPT as sender in niche 1 | this repository | `figures/ED4/ED4k_apt_sender_alluvial_niche1.R` | the 16 flows reproduce the strata of the published PDF; plot not re-drawn: CrossTalkeR not installed (20 Nov 2026) | analysis by Sidrah Maryam; `analyses/12_xenium_niche_cci_liana_crosstalker`; the 16 flows are the 8 highest- and the 8 lowest-scoring aPT-sender interactions |
 
 ## Extended Data Fig. 5
 
@@ -174,12 +174,12 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure PDF
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
 | a | 2-hop composition vs NF-kB activity (PROGENy) | this repository | `figures/ED6/ED6a_celltype_composition_vs_nfkb.py` | pixel-identical to the published source file |  |
-| b | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository |
-| c | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository |
-| d | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository |
-| e | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository |
-| f | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository |
-| g | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository |
+| b | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| c | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| d | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| e | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| f | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| g | RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA | wet lab |  |  | bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
 
 ## Extended Data Fig. 7
 
@@ -298,9 +298,9 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure PDF
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | Xenium QC per core | colleague |  |  | Xenium team notebook; see Code/Preprocessing_Xenium in this GitHub repository |
-| b | Xenium QC per core | colleague |  |  | Xenium team notebook; see Code/Preprocessing_Xenium in this GitHub repository |
-| c | Xenium QC per core | colleague |  |  | Xenium team notebook; see Code/Preprocessing_Xenium in this GitHub repository |
+| a | Xenium QC per cell by core and run: total transcripts (a), unique transcripts (b), cell area (c) | this repository | `figures/S11/S11a-c_xenium_qc_boxplots_per_core.py` | boxes equal the print (quartiles, median and maximum of every box); tick labels differ: public ids (20 Nov 2026) | analysis by Sidrah Maryam; `analyses/14_xenium_qc_per_core` (an earlier notebook is in Code/Preprocessing_Xenium); the script names cores by public ids |
+| b | Xenium QC per cell by core and run: total transcripts (a), unique transcripts (b), cell area (c) | this repository | `figures/S11/S11a-c_xenium_qc_boxplots_per_core.py` | boxes equal the print (quartiles, median and maximum of every box); tick labels differ: public ids (20 Nov 2026) | analysis by Sidrah Maryam; `analyses/14_xenium_qc_per_core` (an earlier notebook is in Code/Preprocessing_Xenium); the script names cores by public ids |
+| c | Xenium QC per cell by core and run: total transcripts (a), unique transcripts (b), cell area (c) | this repository | `figures/S11/S11a-c_xenium_qc_boxplots_per_core.py` | boxes equal the print (quartiles, median and maximum of every box); tick labels differ: public ids (20 Nov 2026) | analysis by Sidrah Maryam; `analyses/14_xenium_qc_per_core` (an earlier notebook is in Code/Preprocessing_Xenium); the script names cores by public ids |
 | d | Xenium per-core QC vs biopsy age | this repository | `figures/S11/S11d_qc_metrics_vs_biopsy_age.py` | pixel-identical to the file on disk; the published version places control cores at 0-5 y (code: 24.8 y) |  |
 
 ## Supplementary Fig. 12
@@ -345,11 +345,11 @@ Every panel of the final figures (main, Extended Data, Supplementary; figure PDF
 
 | panel | content | made by | entry script(s) | re-run check | note |
 |---|---|---|---|---|---|
-| a | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository |
-| b | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository |
-| c | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository |
-| d | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository |
-| e | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository |
+| a | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| b | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| c | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| d | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
+| e | RELA KO design, ICE, blots, top DE genes | wet lab |  |  | DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels) |
 
 ## Supplementary Fig. 18
 

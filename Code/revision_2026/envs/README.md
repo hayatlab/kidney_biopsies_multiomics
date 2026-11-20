@@ -18,3 +18,8 @@ scMEGA and ArchR). Create one with `conda env create -f envs/<name>.yml`; the SL
 | de_env | MAST, fgsea, clusterProfiler (R) |
 | covariate | limma-voom (R) |
 | scmega2 | ArchR, Signac, Seurat, scMEGA eGRN (R) |
+
+Not exported: the R environments of `analyses/12_xenium_niche_cci_liana_crosstalker` steps 1–2 (Seurat, liana,
+CrossTalkeR) and of `analyses/15_bulk_rnaseq_deseq2` (DESeq2, fgsea, gprofiler2, EnhancedVolcano). These steps were run
+by Sidrah Maryam in her own environments and the package versions were not recorded. Step 3 of `analyses/12` and its
+figure scripts run in de_env; the figure scripts of `analyses/13` and `14` run in nichecompass.

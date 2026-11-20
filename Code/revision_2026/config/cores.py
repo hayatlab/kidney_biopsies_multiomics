@@ -7,6 +7,7 @@ de-identified Zenodo object) and read lists of excluded cores from a private fil
 - core_label("XEN085") returns the internal label when the private key is available (KB_CORE_KEY, a CSV with columns
   xenium_core_id and old_label); otherwise it returns the public id itself, which is how the core is named in the
   Zenodo object.
+- public_core_ids(labels) translates internal labels to (xenium_core_id, sample_id) with the same private key.
 - excluded_core_labels(tag) returns the internal labels of excluded cores (KB_EXCLUDED_CORES, a TSV with columns tag and
   label). Without the private file it returns only the entries that carry no identifier ("Unassigned" and the Apollo d0
   A2 control core); the excluded cores are not part of the Zenodo object, so nothing else needs removing there.
@@ -40,6 +41,20 @@ def core_label(xenium_core_id: str, available=None) -> str:
             raise KeyError(f"{xenium_core_id}: {len(hits)} matching labels in the object")
         label = hits[0]
     return label
+
+
+def public_core_ids(labels) -> list:
+    """(xenium_core_id, sample_id) for each internal core label, read from the private key (KB_CORE_KEY, columns
+    xenium_core_id, old_label, sample_id). Use it to group or label by public ids when working on the internal objects;
+    the de-identified Zenodo object already carries `xenium_core_id`. Raises if a label is not in the key."""
+    if not KB_CORE_KEY:
+        raise RuntimeError("KB_CORE_KEY is not set: internal core labels cannot be translated to public ids")
+    with open(KB_CORE_KEY, newline="") as fh:
+        key = {_norm(r["old_label"]): (r["xenium_core_id"], r["sample_id"]) for r in csv.DictReader(fh)}
+    missing = sum(1 for lab in set(labels) if _norm(lab) not in key)
+    if missing:
+        raise KeyError(f"{missing} core labels are not in the core key")
+    return [key[_norm(lab)] for lab in labels]
 
 
 def excluded_core_labels(tag: str) -> list:

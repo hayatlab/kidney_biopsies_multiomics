@@ -1,4 +1,4 @@
-# Code for the revised manuscript: analyses and figure panels (Leon Frommer)
+# Code for the revised manuscript: analyses and figure panels (Leon Frommer, Sidrah Maryam)
 
 Saritas, Boys, Frommer, Kuppe *et al.* — *Cellular and molecular determinants of human kidney disease: single-nuclei, ATAC-seq
 and Xenium based high-resolution spatial mapping of human kidney diseases* (revision 2026).
@@ -6,15 +6,18 @@ and Xenium based high-resolution spatial mapping of human kidney diseases* (revi
 This folder holds the code behind the figure panels produced by Leon Frommer (Hayat lab): the Xenium cell typing,
 factor 1 on Xenium, spatial neighbourhoods and cell-cell interactions, NicheCompass niches, the glomerular niche 20 /
 crescent analysis, the snRNA-seq PEC and immune subclusters, the PT→aPT snATAC/scMEGA gene-regulatory network, the
-snRNA-seq overview, and the Xenium pseudobulk tables handed to the MCFA authors. [`FIGURE_PANELS.md`](FIGURE_PANELS.md) lists every panel of the paper, who made it, and the script
-that draws it. Panels made by other authors (MCFA, atlas construction, UK Biobank, wet lab, a colleague's Xenium
-notebooks) are listed there too, with a pointer to where their code lives.
+snRNA-seq overview, and the Xenium pseudobulk tables handed to the MCFA authors. Since 20 Nov 2026 it also holds analyses
+by Sidrah Maryam (Hayat lab), brought into the same layout: cell-cell interactions within Xenium niches (LIANA,
+CrossTalkeR), gene expression in PT and aPT cells per core, Xenium quality metrics per core, and a bulk RNA-seq
+script (`analyses/12_` … `15_`). [`FIGURE_PANELS.md`](FIGURE_PANELS.md) lists every panel of the paper, who made it, and the script
+that draws it. Panels made by other authors (MCFA, atlas construction, UK Biobank, wet lab) are listed there too, with a
+pointer to where their code lives.
 
 ## Layout
 
 | folder | contents |
 |---|---|
-| `analyses/` | the analyses, in pipeline order (`01_` … `11_`). Each folder has a README: purpose, run order, conda environment, inputs, outputs, panels. Scripts keep the names they were run under (several import each other). |
+| `analyses/` | the analyses, in pipeline order (`01_` … `11_`; `12_` … `15_` are the analyses by Sidrah Maryam). Each folder has a README: purpose, run order, conda environment, inputs, outputs, panels. Scripts keep the names they were run under (several import each other). |
 | `figures/<figure>/` | one entry point per published panel, named after it (`Fig3/Fig3c_…`, `ED4/ED4d-e_…`, `S19/S19c-d_…`). Each reads saved analysis outputs and writes the panel to `$KB_FIG_OUT/<figure>/`; its header names the inputs, the plotting code, edits made afterwards in Illustrator, and how it was verified. |
 | `config/` | `env.sh` (source this first), `kbpaths.py` / `kbpaths.R` (every data location in one place), `cores.py` (Xenium core ids). |
 | `envs/` | conda environment exports and R package lists. |
@@ -60,10 +63,14 @@ K-numbers.
 
 ## Reproducing the panels: what to expect
 
-- Every entry script was re-run on the saved analysis outputs (12 Nov 2026). Of the 68 panel letters made with this code,
+- Every entry script of `analyses/01`–`11` was re-run on the saved analysis outputs (12 Nov 2026). Of these 68 panel letters,
   46 came out pixel- or byte-identical to the files used in the published figures, 7 are identical except for the title,
   and the 4 panels of Supplementary Fig. 10 are identical when drawn from the earlier object they were made from (below);
   the `re-run check` column of `FIGURE_PANELS.md` gives the result and the reason for every other panel.
+- The 7 panel letters of `analyses/12`–`14` (Fig. 3e, 6d, 6e; Extended Data Fig. 4k; Supplementary Fig. 11a–c) were checked
+  on 20 Nov 2026 by their plotted values, because no file of the published plots exists to compare pixels with. Fig. 6d
+  and Extended Data Fig. 4k are not re-drawn without the CrossTalkeR package; their entry scripts then write the plotted
+  table only. `analyses/15` (bulk RNA-seq) was not run.
 - Map panels (Fig. 3f, 6b, 6g; Extended Data Fig. 4d–e; Supplementary Fig. 13) now print the public core id in their
   title; everything below the title is identical.
 - Some originals used unseeded randomness that cannot be replayed exactly: label placement (ggrepel, Supplementary
@@ -78,7 +85,8 @@ K-numbers.
 
 ## How this folder was built
 
-The scripts were copied from the analysis workspaces on 12 Nov 2026 (`analyses/11_xenium_nuclear_pseudobulks` on 19 Nov 2026). Hard-coded paths were replaced by the variables
+The scripts were copied from the analysis workspaces on 12 Nov 2026 (`analyses/11_xenium_nuclear_pseudobulks` on 19 Nov 2026). `analyses/12`–`15` were added on 20 Nov 2026 from scripts and
+notebooks of Sidrah Maryam; they were rewritten by hand into this layout, as noted per file in `MANIFEST.csv`. For the other folders, hard-coded paths were replaced by the variables
 above by an automatic rewrite whose equivalence was checked file by file (Python: identical syntax trees once the
 variables take their default values; R and shell: exact reversal of every substitution); deliberate edits (removal of
 identifiers, locating shipped instead of workspace copies) are listed per file in `MANIFEST.csv` (`patch_rules`). Every
