@@ -31,21 +31,21 @@ Fig. 4,e,Hallmark & Reactome fgsea ranked by factor 1 tubular weight (984 protei
 Fig. 5,a,Hallmark / PROGENy / CollecTRI on factor loadings,MCFA,,,
 Fig. 5,b,Hallmark / PROGENy / CollecTRI on factor loadings,MCFA,,,
 Fig. 5,c,Hallmark / PROGENy / CollecTRI on factor loadings,MCFA,,,
-Fig. 5,d,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,e,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,f,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,g,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,h,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,i,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,j,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,k,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,l,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,m,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,n,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,o,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,p,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,q,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Fig. 5,r,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
+Fig. 5,d,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,e,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,f,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,g,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,h,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,i,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,j,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,k,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,l,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,m,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,n,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,o,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,p,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,q,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
+Fig. 5,r,"RelA KO cells, bulk RNA-seq, organoids, mice",wet lab,,,RelA KO bulk RNA-seq analysis (g-j) not in this repository
 Fig. 6,a,cell-type composition of the glomerular niches,this repository,figures/Fig6/Fig6a_niche_vs_celltype_heatmap.py,pixel-identical to the published source file,
 Fig. 6,b,glomerular niche maps of K50 (crescent) and K18,this repository,figures/Fig6/Fig6b_niche_maps_K50_K18.py,"identical except the title, which now shows the public core id",H&E and protein images are microscopy
 Fig. 6,c,Xenium marker genes in glomerular niche 20,this repository,figures/Fig6/Fig6c_niche20_marker_dotplot.py,byte-identical,
@@ -100,35 +100,35 @@ Extended Data Fig. 4,h,niche enrichment by eGFR group,this repository,figures/ED
 Extended Data Fig. 4,i,condition composition of the niches,this repository,figures/ED4/ED4i_condition_stacked_bars.py,pixel-identical to the published source file,
 Extended Data Fig. 4,j,Hallmark pathway scores per niche,this repository,figures/ED4/ED4j_hallmark_niches.py,pixel-identical to the published source file,
 Extended Data Fig. 4,k,alluvial plot of ligand-receptor interactions with aPT as sender in niche 1,this repository,figures/ED4/ED4k_apt_sender_alluvial_niche1.R,the 16 flows reproduce the strata of the published PDF; plot not re-drawn: CrossTalkeR not installed (20 Nov 2026),analysis by Sidrah Maryam; `analyses/12_xenium_niche_cci_liana_crosstalker`; the 16 flows are the 8 highest- and the 8 lowest-scoring aPT-sender interactions
-Extended Data Fig. 5,a,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,b,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,c,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,d,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,e,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,f,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,g,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,h,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,i,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
-Extended Data Fig. 5,j,"NELL1 IHC/IF, overexpression, bulk RNA-seq",wet lab,,,
+Extended Data Fig. 5,a,"NELL1 IHC/IF in kidney tissue; lentiviral NELL1 overexpression in PT cells (qPCR, blot)",wet lab,,,
+Extended Data Fig. 5,b,"NELL1 IHC/IF in kidney tissue; lentiviral NELL1 overexpression in PT cells (qPCR, blot)",wet lab,,,
+Extended Data Fig. 5,c,"NELL1 IHC/IF in kidney tissue; lentiviral NELL1 overexpression in PT cells (qPCR, blot)",wet lab,,,
+Extended Data Fig. 5,d,"NELL1 IHC/IF in kidney tissue; lentiviral NELL1 overexpression in PT cells (qPCR, blot)",wet lab,,,
+Extended Data Fig. 5,e,"NELL1 IHC/IF in kidney tissue; lentiviral NELL1 overexpression in PT cells (qPCR, blot)",wet lab,,,
+Extended Data Fig. 5,f,"NELL1 IHC/IF in kidney tissue; lentiviral NELL1 overexpression in PT cells (qPCR, blot)",wet lab,,,
+Extended Data Fig. 5,g,"bulk RNA-seq of NELL1-overexpressing vs backbone PT cells: volcano (g), top-50 heat map (h), Hallmark GSEA (i), TF activity (j)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 5,h,"bulk RNA-seq of NELL1-overexpressing vs backbone PT cells: volcano (g), top-50 heat map (h), Hallmark GSEA (i), TF activity (j)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 5,i,"bulk RNA-seq of NELL1-overexpressing vs backbone PT cells: volcano (g), top-50 heat map (h), Hallmark GSEA (i), TF activity (j)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 5,j,"bulk RNA-seq of NELL1-overexpressing vs backbone PT cells: volcano (g), top-50 heat map (h), Hallmark GSEA (i), TF activity (j)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
 Extended Data Fig. 6,a,2-hop composition vs NF-kB activity (PROGENy),this repository,figures/ED6/ED6a_celltype_composition_vs_nfkb.py,pixel-identical to the published source file,
-Extended Data Fig. 6,b,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Extended Data Fig. 6,c,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Extended Data Fig. 6,d,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Extended Data Fig. 6,e,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Extended Data Fig. 6,f,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Extended Data Fig. 6,g,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Extended Data Fig. 7,a,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,b,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,c,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,d,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,e,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,f,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,g,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,h,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,i,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,j,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,k,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
-Extended Data Fig. 7,l,"APP IHC, ciPEC APP overexpression, co-culture bulk RNA-seq",wet lab,,,
+Extended Data Fig. 6,b,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository
+Extended Data Fig. 6,c,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository
+Extended Data Fig. 6,d,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository
+Extended Data Fig. 6,e,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository
+Extended Data Fig. 6,f,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository
+Extended Data Fig. 6,g,"RelA KO construct, ICE, Sanger, bulk RNA-seq PCA/volcano/GSEA",wet lab,,,bulk analysis not in this repository
+Extended Data Fig. 7,a,"APP IHC in kidney tissue; lentiviral APP770 overexpression in ciPECs (qPCR, blot); co-culture schematic",wet lab,,,
+Extended Data Fig. 7,b,"APP IHC in kidney tissue; lentiviral APP770 overexpression in ciPECs (qPCR, blot); co-culture schematic",wet lab,,,
+Extended Data Fig. 7,c,"APP IHC in kidney tissue; lentiviral APP770 overexpression in ciPECs (qPCR, blot); co-culture schematic",wet lab,,,
+Extended Data Fig. 7,d,"APP IHC in kidney tissue; lentiviral APP770 overexpression in ciPECs (qPCR, blot); co-culture schematic",wet lab,,,
+Extended Data Fig. 7,e,"APP IHC in kidney tissue; lentiviral APP770 overexpression in ciPECs (qPCR, blot); co-culture schematic",wet lab,,,
+Extended Data Fig. 7,f,"APP IHC in kidney tissue; lentiviral APP770 overexpression in ciPECs (qPCR, blot); co-culture schematic",wet lab,,,
+Extended Data Fig. 7,g,"bulk RNA-seq of APP770 vs backbone ciPECs after co-culture: top-50 heat map (g), volcano (h), Hallmark GSEA (i)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 7,h,"bulk RNA-seq of APP770 vs backbone ciPECs after co-culture: top-50 heat map (g), volcano (h), Hallmark GSEA (i)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 7,i,"bulk RNA-seq of APP770 vs backbone ciPECs after co-culture: top-50 heat map (g), volcano (h), Hallmark GSEA (i)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 7,j,"bulk RNA-seq of immune cells co-cultured with APP770 vs backbone ciPECs: top-50 heat map (j), volcano (k), Hallmark GSEA (l)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 7,k,"bulk RNA-seq of immune cells co-cultured with APP770 vs backbone ciPECs: top-50 heat map (j), volcano (k), Hallmark GSEA (l)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
+Extended Data Fig. 7,l,"bulk RNA-seq of immune cells co-cultured with APP770 vs backbone ciPECs: top-50 heat map (j), volcano (k), Hallmark GSEA (l)",colleague,,,DESeq2 / fgsea analysis by Sidrah Maryam; the script of this experiment is not in this repository (`analyses/15_bulk_rnaseq_deseq2` holds a script of the same kind for other experiments)
 Supplementary Fig. 1,a,eGFR trajectories and slopes,not found,,,an earlier version (54-sample cohort) exists in egfr_trajectories_fig1e; the final version was not made on this system
 Supplementary Fig. 1,b,eGFR trajectories and slopes,not found,,,an earlier version (54-sample cohort) exists in egfr_trajectories_fig1e; the final version was not made on this system
 Supplementary Fig. 1,c,eGFR trajectories and slopes,not found,,,an earlier version (54-sample cohort) exists in egfr_trajectories_fig1e; the final version was not made on this system
@@ -192,11 +192,11 @@ Supplementary Fig. 15,d,lentiviral NELL1 construct and sorting strategy (wet lab
 Supplementary Fig. 16,a,uncropped immunoblots (wet lab),wet lab,,,
 Supplementary Fig. 16,b,uncropped immunoblots (wet lab),wet lab,,,
 Supplementary Fig. 16,c,uncropped immunoblots (wet lab),wet lab,,,
-Supplementary Fig. 17,a,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Supplementary Fig. 17,b,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Supplementary Fig. 17,c,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Supplementary Fig. 17,d,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
-Supplementary Fig. 17,e,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository; a DESeq2 / fgsea script for RELA clone experiments is in `analyses/15_bulk_rnaseq_deseq2` (not confirmed as the source of these panels)
+Supplementary Fig. 17,a,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository
+Supplementary Fig. 17,b,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository
+Supplementary Fig. 17,c,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository
+Supplementary Fig. 17,d,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository
+Supplementary Fig. 17,e,"RELA KO design, ICE, blots, top DE genes",wet lab,,,DESeq2 analysis of e not in this repository
 Supplementary Fig. 18,a,"Rela deletion in mouse kidneys, RNAscope (wet lab)",wet lab,,,
 Supplementary Fig. 18,b,"Rela deletion in mouse kidneys, RNAscope (wet lab)",wet lab,,,
 Supplementary Fig. 18,c,"Rela deletion in mouse kidneys, RNAscope (wet lab)",wet lab,,,

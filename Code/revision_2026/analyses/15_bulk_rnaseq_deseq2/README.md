@@ -8,12 +8,13 @@ through environment variables.
 | experiment | groups (3 replicates each) | contrasts | panels |
 |---|---|---|---|
 | 1 | DMSO or etoposide pretreatment × vehicle or soluble APPα | sAPP vs vehicle (in DMSO and in etoposide), etoposide vs DMSO | by its design the soluble APPα experiment; not a figure panel of the paper |
-| 2 | `Ca_rela_5_1`, `Ca_rela_5_2`, `Ca_rela_3_3`, `CaNT` (by their names: RELA guide clones and a non-targeting control) | each clone vs `CaNT` (`Ca_rela_3_3` vs `CaNT` plus one further control sample) | not confirmed |
-| 3 | `CaNT1_rela`, `CaNT2_rela`, `Ca_rela_5_1`, `Ca_rela_5_2`, `Ca_rela_3_3` | each clone vs each control | not confirmed |
+| 2 | `Ca_rela_5_1`, `Ca_rela_5_2`, `Ca_rela_3_3`, `CaNT` (by their names: RELA guide clones and a non-targeting control) | each clone vs `CaNT` (`Ca_rela_3_3` vs `CaNT` plus one further control sample) | none |
+| 3 | `CaNT1_rela`, `CaNT2_rela`, `Ca_rela_5_1`, `Ca_rela_5_2`, `Ca_rela_3_3` | each clone vs each control | none |
 
-**Which contrasts of experiments 2 and 3 are the RELA knockout panels of the paper (Fig. 5g–j, Extended Data Fig. 6e–g)
-has not been confirmed with the authors of those panels.** `FIGURE_PANELS.md` therefore does not list this script as
-the source of a panel.
+**No figure panel of the paper is listed for this script in `FIGURE_PANELS.md`.** The bulk RNA-seq panels of the paper
+that show this kind of analysis (Extended Data Fig. 5g–j, NELL1 overexpression; Extended Data Fig. 7g–l, APP770
+co-culture) come from other experiments, whose sample table and contrasts are not part of this file. The RELA
+knockout panels (Fig. 5g–j, Extended Data Fig. 6e–g) were analysed by another author.
 
 Method: gene-level counts (`star_salmon/salmon.merged.gene_counts.tsv`, the output layout of nf-core/rnaseq), summed per gene symbol; genes
 with more than 10 counts over all samples are kept (RELA always). DESeq2 with design `~ condition` over all groups of an
